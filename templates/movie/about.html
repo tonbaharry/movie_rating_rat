@@ -1,0 +1,17 @@
+{% extends "movie/base.html" %}
+
+{% load static %}
+
+{% block title %}About{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+    <h1>About Rating Rat</h1>
+    This is <strong>Rats's about page</strong>.<br/>
+
+    You've visited the site on <strong>{{ visit_count }} occasion(s).</strong><br/>
+
+    Here's a picture of rat!<br/>
+    <img src="{% static "rat.jpg" %}" alt="Picture of Rat" />
+</div>
+{% endblock %}

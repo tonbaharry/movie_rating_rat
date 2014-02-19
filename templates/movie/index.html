@@ -1,0 +1,45 @@
+{% extends "movie/base.html" %}
+
+{% block title %}Welcome Movie Rat!{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+    <h1>Movie Rat</h1>
+
+    <p>Movie Rating Website.</p>
+</div>
+
+<div class="row-fluid">
+    <div class="span6">
+        <h2>Top Five Categories</h2>
+        {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li><a href="/movie/category/{{ category.url }}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No categories at present.</strong>
+        {% endif %}
+
+    </div>
+    <!--/span-->
+    <div class="span6">
+        <h2>Top Five Movies</h2>
+        {% if pages %}
+        <ul>
+            {% for page in pages %}
+            <li><a href="{{ page.url}}">{{ page.title }}</a> - {{ page.category}} ({{ page.views }} view(s))</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No pages at present.</strong>
+        {% endif %}
+
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+
+{% endblock %}
+
