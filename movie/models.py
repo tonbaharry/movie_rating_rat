@@ -51,9 +51,11 @@ class Movie(models.Model):
     releaseYear = models.DateTimeField()
     coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
     trailer = models.URLField()
+    description = models.CharField(max_length=500)
 
-    class meta:
-        together = ("movieName", "releaseYear")
+    def __unicode__(self):
+		return self.title
+
 
 class Ratings(models.Model):
     name = models.ForeignKey(User)
