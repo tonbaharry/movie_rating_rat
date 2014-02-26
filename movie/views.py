@@ -5,7 +5,7 @@ from movie.models import Category
 from movie.models import Page
 from movie.models import UserProfile
 from movie.forms import UserForm, UserProfileForm
-from movie.forms import CategoryForm, PageForm
+from movie.forms import CategoryForm, PageForm, MovieForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -13,9 +13,12 @@ from datetime import datetime
 from movie.bing_search import run_query
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from movie.models import Movie
+from movie.models import MoviePage
 
 def encode_url(str):
     return str.replace(' ', '_')
+
 
 def decode_url(str):
     return str.replace('_', ' ')
@@ -34,8 +37,26 @@ def get_category_list(max_results=0, starts_with=''):
 
     for cat in cat_list:
         cat.url = encode_url(cat.name)
-    
+
     return cat_list
+
+
+def get_movie_list(max_results=0, starts_with=''):
+    movie_list = []
+    if starts_with:
+        movie_list = Movie.objects.filter(name__startswith=starts_with)
+    else:
+        movie_list = Movie.objects.all()
+
+    if max_results > 0:
+        if (len(movie_list) > max_results):
+            movie_list = movie_list[:max_results]
+
+    for movie in movie_list:
+        movie.url = encode_url(movie.name)
+
+    return movie_list
+
 
 def index(request):
     context = RequestContext(request)
@@ -69,6 +90,7 @@ def index(request):
     # Render and return the rendered response back to the user.
     return render_to_response('movie/index.html', context_dict, context)
 
+
 def about(request):
     # Request the context.
     context = RequestContext(request)
@@ -78,12 +100,13 @@ def about(request):
     # If the visits session varible exists, take it and use it.
     # If it doesn't, we haven't visited the site so set the count to zero.
 
-    count = request.session.get('visits',0)
+    count = request.session.get('visits', 0)
 
     context_dict['visit_count'] = count
 
     # Return and render the response, ensuring the count is passed to the template engine.
-    return render_to_response('movie/about.html', context_dict , context)
+    return render_to_response('movie/about.html', context_dict, context)
+
 
 def category(request, category_name_url):
     # Request our context
@@ -126,6 +149,7 @@ def category(request, category_name_url):
     # Go render the response and return it to the client.
     return render_to_response('movie/category.html', context_dict, context)
 
+
 @login_required
 def add_category(request):
     # Get the context from the request.
@@ -133,7 +157,7 @@ def add_category(request):
     cat_list = get_category_list()
     context_dict = {}
     context_dict['cat_list'] = cat_list
-    
+
     # A HTTP POST?
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -147,7 +171,7 @@ def add_category(request):
             # The user will be shown the homepage.
             return index(request)
         else:
-	        # The supplied form contained errors - just print them to the terminal.
+        # The supplied form contained errors - just print them to the terminal.
             print form.errors
     else:
         # If the request was not a POST, display the form to enter details.
@@ -157,6 +181,7 @@ def add_category(request):
     # Render the form with error messages (if any).
     context_dict['form'] = form
     return render_to_response('movie/add_category.html', context_dict, context)
+
 
 @login_required
 def add_page(request, category_name_url):
@@ -168,7 +193,7 @@ def add_page(request, category_name_url):
     category_name = decode_url(category_name_url)
     if request.method == 'POST':
         form = PageForm(request.POST)
-        
+
         if form.is_valid():
             # This time we cannot commit straight away.
             # Not all fields are automatically populated!
@@ -179,7 +204,7 @@ def add_page(request, category_name_url):
                 cat = Category.objects.get(name=category_name)
                 page.category = cat
             except Category.DoesNotExist:
-                return render_to_response( 'movie/add_page.html',
+                return render_to_response('movie/add_page.html',
                                           context_dict,
                                           context)
 
@@ -196,13 +221,14 @@ def add_page(request, category_name_url):
     else:
         form = PageForm()
 
-    context_dict['category_name_url']= category_name_url
-    context_dict['category_name'] =  category_name
+    context_dict['category_name_url'] = category_name_url
+    context_dict['category_name'] = category_name
     context_dict['form'] = form
 
-    return render_to_response( 'movie/add_page.html',
-                               context_dict,
-                               context)
+    return render_to_response('movie/add_page.html',
+                              context_dict,
+                              context)
+
 
 def register(request):
     # Request the context.
@@ -255,7 +281,7 @@ def register(request):
         profile_form = UserProfileForm()
 
     context_dict['user_form'] = user_form
-    context_dict['profile_form']= profile_form
+    context_dict['profile_form'] = profile_form
     context_dict['registered'] = registered
 
     # Render and return!
@@ -263,6 +289,7 @@ def register(request):
         'movie/register.html',
         context_dict,
         context)
+
 
 def user_login(request):
     # Obtain our request's context.
@@ -301,6 +328,7 @@ def user_login(request):
     else:
         return render_to_response('movie/login.html', context_dict, context)
 
+
 @login_required
 def restricted(request):
     context = RequestContext(request)
@@ -317,6 +345,7 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/movie/')
+
 
 def search(request):
     context = RequestContext(request)
@@ -344,15 +373,16 @@ def profile(request):
     cat_list = get_category_list()
     context_dict = {'cat_list': cat_list}
     u = User.objects.get(username=request.user)
-    
+
     try:
         up = UserProfile.objects.get(user=u)
     except:
         up = None
-    
+
     context_dict['user'] = u
     context_dict['userprofile'] = up
     return render_to_response('movie/profile.html', context_dict, context)
+
 
 def track_url(request):
     context = RequestContext(request)
@@ -371,6 +401,7 @@ def track_url(request):
 
     return redirect(url)
 
+
 @login_required
 def like_category(request):
     context = RequestContext(request)
@@ -388,6 +419,7 @@ def like_category(request):
 
     return HttpResponse(likes)
 
+
 def suggest_category(request):
     context = RequestContext(request)
     cat_list = []
@@ -399,7 +431,7 @@ def suggest_category(request):
 
     cat_list = get_category_list(8, starts_with)
 
-    return render_to_response('movie/category_list.html', {'cat_list': cat_list }, context)
+    return render_to_response('movie/category_list.html', {'cat_list': cat_list}, context)
 
 
 @login_required
@@ -423,3 +455,115 @@ def auto_add_page(request):
             context_dict['pages'] = pages
 
     return render_to_response('movie/page_list.html', context_dict, context)
+
+def suggest_movie(request):
+    context = RequestContext(request)
+    movie_list = []
+    starts_with = ''
+    if request.method == 'GET':
+        starts_with = request.GET['suggestion']
+    else:
+        starts_with = request.POST['suggestion']
+
+    movie_list = get_movie_list(8, starts_with)
+
+    return render_to_response('movie/movie_list.html', {'movie_list': movie_list}, context)
+
+
+@login_required
+def auto_add_moviepage(request):
+    context = RequestContext(request)
+    cat_id = None
+    url = None
+    title = None
+    context_dict = {}
+    if request.method == 'GET':
+        movie_id = request.GET['movie_id']
+        url = request.GET['url']
+        title = request.GET['title']
+        if cat_id:
+            movie = Movie.objects.get(id=int(cat_id))
+            p = MoviePage.objects.get_or_create(movie=movie, title=title, url=url)
+
+            moviepages = MoviePage.objects.filter(movie=movie).order_by('-views')
+
+            # Adds our results list to the template context under name pages.
+            context_dict['moviepages'] = moviepages
+
+    return render_to_response('movie/moviepage_list.html', context_dict, context)
+
+
+#---------------------------------------------------
+def movie(request, movie_name_url):
+    # Request our context
+    context = RequestContext(request)
+
+    # Change underscores in the category name to spaces.
+    # URL's don't handle spaces well, so we encode them as underscores.
+    movie_name = decode_url(movie_name_url)
+
+    # Build up the dictionary we will use as out template context dictionary.
+    context_dict = {'movie_name': movie_name, 'movie_name_url': movie_name_url}
+
+    movie_list = get_movie_list()
+    context_dict['movie_list'] = movie_list
+
+    try:
+        # Find the category with the given name.
+        # Raises an exception if the category doesn't exist.
+        # We also do a case insensitive match.
+        movie = Movie.objects.get(name__iexact=movie_name)
+        context_dict['movie'] = movie
+        # Retrieve all the associated pages.
+        # Note that filter returns >= 1 model instance.
+        moviepages = MoviePage.objects.filter(movie=movie).order_by('-views')
+
+        # Adds our results list to the template context under name pages.
+        context_dict['moviepages'] = moviepages
+    except Movie.DoesNotExist:
+        # We get here if the category does not exist.
+        # Will trigger the template to display the 'no category' message.
+        pass
+
+    if request.method == 'POST':
+        query = request.POST.get('query')
+        if query:
+            query = query.strip()
+            result_list = run_query(query)
+            context_dict['result_list'] = result_list
+
+    # Go render the response and return it to the client.
+    return render_to_response('movie/movie.html', context_dict, context)
+
+
+@login_required
+def add_movie(request):
+    # Get the context from the request.
+    context = RequestContext(request)
+    movie_list = get_movie_list()
+    context_dict = {}
+    context_dict['movie_list'] = movie_list
+
+    # A HTTP POST?
+    if request.method == 'POST':
+        form = MovieForm(request.POST)
+
+        # Have we been provided with a valid form?
+        if form.is_valid():
+            # Save the new category to the database.
+            form.save(commit=True)
+
+            # Now call the index() view.
+            # The user will be shown the homepage.
+            return index(request)
+        else:
+        # The supplied form contained errors - just print them to the terminal.
+            print form.errors
+    else:
+        # If the request was not a POST, display the form to enter details.
+        form = MovieForm()
+
+    # Bad form (or form details), no form supplied...
+    # Render the form with error messages (if any).
+    context_dict['form'] = form
+    return render_to_response('movie/add_movie.html', context_dict, context)

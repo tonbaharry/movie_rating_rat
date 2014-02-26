@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from movie.models import Page, Category, UserProfile
+from movie.models import Page, Category, UserProfile,Movie
 
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(max_length=128, help_text="Please enter the category name.")
@@ -11,6 +11,17 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         # Provide an association between the ModelForm and a model
         model = Category
+
+
+class MovieForm(forms.ModelForm):
+    name = forms.CharField(max_length=128, help_text="Please enter the Movie name.")
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+
+    # An inline class to provide additional information on the form.
+    class Meta:
+        # Provide an association between the ModelForm and a model
+        model = Movie
 
 class PageForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please enter the title of the page.")
