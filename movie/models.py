@@ -49,6 +49,7 @@ class User(models.Model):
 
 
 class Movie(models.Model):
+    category = models.ForeignKey(Category)
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
@@ -64,8 +65,6 @@ class Movie(models.Model):
 
 class MoviePage(models.Model):
     movie = models.ForeignKey(Category)
-
-
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
