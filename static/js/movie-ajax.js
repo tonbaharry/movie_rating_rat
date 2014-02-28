@@ -2,9 +2,9 @@ $(document).ready(function() {
 	
 
 	$('#likes').click(function(){
-	        var catid;
-	        catid = $(this).attr("data-catid");
-	         $.get('/movie/like_category/', {category_id: catid}, function(data){
+	        var movid;
+	        movid = $(this).attr("data-movid");
+	         $.get('/movie/like_movie/', {movie_id: movid}, function(data){
 	                   $('#like_count').html(data);
 	                   $('#likes').hide();
 	               });
@@ -14,18 +14,18 @@ $(document).ready(function() {
     	$('#suggestion').keyup(function(){
 		var query;
 		query = $(this).val();
-		$.get('/movie/suggest_category/', {suggestion: query}, function(data){
-                 $('#cats').html(data);
+		$.get('/movie/suggest_movie/', {suggestion: query}, function(data){
+                 $('#movs').html(data);
 		});
 	});
 
     
 	$('.movie-add').click(function(){
-	    var catid = $(this).attr("data-catid");
+	    var movid = $(this).attr("data-movid");
         var url = $(this).attr("data-url");
         var title = $(this).attr("data-title");
         var me = $(this)
-	    $.get('/movie/auto_add_page/', {category_id: catid, url: url, title: title}, function(data){
+	    $.get('/movie/auto_add_page/', {movie_id: movid, url: url, title: title}, function(data){
 	                   $('#pages').html(data);
 	                   me.hide();
 	               });

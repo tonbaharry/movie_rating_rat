@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class Category(models.Model):
+class Movie(models.Model):
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
@@ -12,7 +12,7 @@ class Category(models.Model):
 
 
 class Page(models.Model):
-    category = models.ForeignKey(Category)
+    movie = models.ForeignKey(Movie)
     title = models.CharField(max_length=128)
     url = models.URLField()
     views = models.IntegerField(default=0)
@@ -48,23 +48,8 @@ class User(models.Model):
 #----------------------------------------------------------------------------------------------
 
 
-class Movie(models.Model):
-    category = models.ForeignKey(Category)
-    name = models.CharField(max_length=128, unique=True)
-    views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
-    releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
-    coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
-    trailer = models.URLField(blank=True)
-    description = models.TextField(max_length=1000)
-
-
-    def __unicode__(self):
-        return self.name
-
-
 class MoviePage(models.Model):
-    movie = models.ForeignKey(Category)
+    movie = models.ForeignKey(Movie)
     name = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
@@ -80,12 +65,12 @@ class MoviePage(models.Model):
 
 class Ratings(models.Model):
     name = models.ForeignKey(User)
-    movieName = models.ForeignKey(Movie)
+    movieName = models.ForeignKey(MoviePage)
     rates = models.IntegerField(max_length=5)
 
 
 class Comments(models.Model):
     name = models.ForeignKey(User)
-    MovieName = models.ForeignKey(Movie)
+    MovieName = models.ForeignKey(MoviePage)
     comment = models.CharField(max_length=500, null=False)
     commentDate = models.DateField()

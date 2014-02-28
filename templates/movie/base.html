@@ -46,8 +46,8 @@
                 <ul class="nav">
                     {% if user.is_authenticated %}
                     <!-- <li><a href="/rango/restricted/">Restricted</a></li> -->
-                    <li><a href="/movie/add_category/">Add Category</a></li>
                     <li><a href="/movie/add_movie/">Add Movie</a></li>
+
                     {% endif %}
 
                     <!--- <li><a href="/rango/search">Search</a></li> -->
@@ -80,23 +80,23 @@
                 </ul>
 
 		<ul class="nav nav-list">
-			<li class="nav-header">Find a Category</li>
+			<li class="nav-header">Find a Movie</li>
 			<form>
 			<label></label>
 			<li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
 			</form>
 		</ul>
 
-        {% if cat_list %}
-		    <div id="cats">
-			    {% include 'movie/category_list.html' with cat_list=cat_list %}
+        {% if mov_list %}
+		    <div id="movs">
+			    {% include 'movie/movie_list.html' with mov_list=mov_list %}
 		    </div>
 	    {% endif %}
 <!---
     <div id="cats">
-		   {% if cat_list %}
+		   {% if mov_list %}
 			<ul class="nav nav-list"><li>Category List</li></ul>
-			   {% include 'movie/category_list.html' with cat_list=cat_list %}
+			   {% include 'movie/movie_list.html' with mov_list=mov_list %}
 		   {% endif %}
 		</div>
 --->

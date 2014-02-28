@@ -1,16 +1,9 @@
- {% if moviepages %}
-    <ul>
-        {% for moviepage in moviepages %}
-        <li>
-            <a href="/movie/goto/?moviepage_id={{moviepage.id}}">{{moviepage.title}}</a>
-            {% if moviepage.views > 1 %}
-                - ({{ moviepage.views }} views)
-            {% elif moviepage.views == 1 %}
-                - ({{ moviepage.views }} view)
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <strong>No pages currently in category.</strong><br/>
-{% endif %}
+	<ul class="nav nav-list">
+	   {% if mov_list %}
+		{% for mov in mov_list %}
+		  <li><a href="/movie/movie/{{ mov.url }}">{{ mov.name }}</a></li>
+		{% endfor %}
+	   {% else %}
+		<li>No movies at present.</li>
+	   {% endif %}
+	</ul>
