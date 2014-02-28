@@ -3,19 +3,23 @@ from django.contrib.auth.models import User
 
 
 class Movie(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=200, unique=True)
     views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0 )
+    #releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
+    #coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
+    #trailer = models.Field(blank=True)
+    description = models.TextField(max_length=500)
+
 
     def __unicode__(self):
         return self.name
 
 
-class Page(models.Model):
+class Comment(models.Model):
     movie = models.ForeignKey(Movie)
-    title = models.CharField(max_length=128)
-    url = models.URLField()
     views = models.IntegerField(default=0)
+    description = models.TextField(max_length=500)
 
     def __unicode__(self):
         return self.title
@@ -48,29 +52,3 @@ class User(models.Model):
 #----------------------------------------------------------------------------------------------
 
 
-class MoviePage(models.Model):
-    movie = models.ForeignKey(Movie)
-    name = models.CharField(max_length=128, unique=True)
-    views = models.IntegerField(default=0)
-    likes = models.IntegerField(default=0)
-    releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
-    coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
-    trailer = models.URLField(blank=True)
-    description = models.CharField(max_length=500)
-
-
-    def __unicode__(self):
-        return self.name
-
-
-class Ratings(models.Model):
-    name = models.ForeignKey(User)
-    movieName = models.ForeignKey(MoviePage)
-    rates = models.IntegerField(max_length=5)
-
-
-class Comments(models.Model):
-    name = models.ForeignKey(User)
-    MovieName = models.ForeignKey(MoviePage)
-    comment = models.CharField(max_length=500, null=False)
-    commentDate = models.DateField()

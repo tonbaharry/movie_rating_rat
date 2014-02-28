@@ -2,10 +2,10 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from movie.models import Movie
-from movie.models import Page
+from movie.models import Comment
 from movie.models import UserProfile
 from movie.forms import UserForm, UserProfileForm
-from movie.forms import MovieForm, PageForm
+from movie.forms import MovieForm, CommentForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -57,7 +57,7 @@ def index(request):
     mov_list = get_movie_list()
     context_dict['mov_list'] = mov_list
 
-    page_list = Page.objects.order_by('-views')[:5]
+    page_list = Comment.objects.order_by('-views')[:5]
     context_dict['pages'] = page_list
 
     if request.session.get('last_visit'):
@@ -116,7 +116,7 @@ def movie(request, movie_name_url):
         context_dict['movie'] = movie
         # Retrieve all the associated pages.
         # Note that filter returns >= 1 model instance.
-        pages = Page.objects.filter(movie=movie).order_by('-views')
+        pages = Comment.objects.filter(movie=movie).order_by('-views')
 
         # Adds our results list to the template context under name pages.
         context_dict['pages'] = pages
@@ -178,7 +178,7 @@ def add_page(request, movie_name_url):
 
     movie_name = decode_url(movie_name_url)
     if request.method == 'POST':
-        form = PageForm(request.POST)
+        form = CommentForm(request.POST)
 
         if form.is_valid():
             # This time we cannot commit straight away.
@@ -188,9 +188,9 @@ def add_page(request, movie_name_url):
             # Retrieve the associated Category object so we can add it.
             try:
                 mov = Movie.objects.get(name=movie_name)
-                page.category = mov
+                page.movie = mov
             except Movie.DoesNotExist:
-                return render_to_response('movie/add_page.html',
+                return render_to_response('movie/add_comment.html',
                                           context_dict,
                                           context)
 
@@ -205,13 +205,13 @@ def add_page(request, movie_name_url):
         else:
             print form.errors
     else:
-        form = PageForm()
+        form = CommentForm()
 
     context_dict['movie_name_url'] = movie_name_url
     context_dict['movie_name'] = movie_name
     context_dict['form'] = form
 
-    return render_to_response('movie/add_page.html',
+    return render_to_response('movie/add_comment.html',
                               context_dict,
                               context)
 
@@ -378,7 +378,7 @@ def track_url(request):
         if 'page_id' in request.GET:
             page_id = request.GET['page_id']
             try:
-                page = Page.objects.get(id=page_id)
+                page = Comment.objects.get(id=page_id)
                 page.views = page.views + 1
                 page.save()
                 url = page.url
@@ -433,9 +433,9 @@ def auto_add_page(request):
         title = request.GET['title']
         if mov_id:
             movie = Movie.objects.get(id=int(mov_id))
-            p = Page.objects.get_or_create(movie=movie, title=title, url=url)
+            p = Comment.objects.get_or_create(movie=movie, title=title, url=url)
 
-            pages = Page.objects.filter(movie=movie).order_by('-views')
+            pages = Comment.objects.filter(movie=movie).order_by('-views')
 
             # Adds our results list to the template context under name pages.
             context_dict['pages'] = pages

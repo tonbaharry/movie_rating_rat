@@ -41,11 +41,11 @@ def populate():
 
     # Print out what we have added to the user.
     for c in Movie.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Comment.objects.filter(category=c):
             print "- {0} - {1}".format(str(c), str(p))
 
 def add_page(mov, title, url, views=0):
-    p = Page.objects.get_or_create(category=mov, title=title, url=url, views=views)[0]
+    p = Comment.objects.get_or_create(category=mov, title=title, url=url, views=views)[0]
     return p
 
 def add_mov(name, views=0, likes=0):
@@ -56,5 +56,5 @@ def add_mov(name, views=0, likes=0):
 if __name__ == '__main__':
     print "Starting Movie Rat population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_rating_project.settings')
-    from movie.models import Movie, Page
+    from movie.models import Movie, Comment
     populate()
