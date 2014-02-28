@@ -473,7 +473,7 @@ def suggest_movie(request):
 @login_required
 def auto_add_moviepage(request):
     context = RequestContext(request)
-    cat_id = None
+    movie_id = None
     url = None
     title = None
     context_dict = {}
@@ -481,8 +481,8 @@ def auto_add_moviepage(request):
         movie_id = request.GET['movie_id']
         url = request.GET['url']
         title = request.GET['title']
-        if cat_id:
-            movie = Movie.objects.get(id=int(cat_id))
+        if movie_id:
+            movie = Movie.objects.get(id=int(movie_id))
             p = MoviePage.objects.get_or_create(movie=movie, title=title, url=url)
 
             moviepages = MoviePage.objects.filter(movie=movie).order_by('-views')

@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^auto_add_page/$', views.auto_add_page, name='auto_add_page'),
     url(r'^movie/(?P<movie_name_url>\w+)/$', views.movie, name='movie'),
 	url(r'^add_movie/$', views.add_movie, name='add_movie'),
-    url(r'^movie/(?P<movie_name_url>\w+)/add_page/$', views.add_page, name='add_page'),
+    url(r'^movie/(?P<movie_name_url>\w+)/add_movie/$', views.add_movie, name='add_movie'),
 
 	)
 

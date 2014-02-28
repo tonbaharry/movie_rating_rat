@@ -6,7 +6,7 @@
             {% if moviepage.views > 1 %}
                 - ({{ moviepage.views }} views)
             {% elif moviepage.views == 1 %}
-                - ({{ page.views }} view)
+                - ({{ moviepage.views }} view)
             {% endif %}
         </li>
         {% endfor %}
