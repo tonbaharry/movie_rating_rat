@@ -55,7 +55,7 @@ class Movie(models.Model):
     releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
     coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
     trailer = models.URLField(blank=True)
-    description = models.CharField(max_length=500)
+    description = models.TextField(max_length=1000)
 
 
     def __unicode__(self):

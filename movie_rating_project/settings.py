@@ -97,9 +97,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
+#lzcpau%1br-$31x@ur+1@*uknf%((@qlb008_0oxo&kur&_92e
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'lzcpau%1br-$31x@ur+1@*uknf%((@qlb008_0oxo&kur&_92e'
+SECRET_KEY = 'qwertyu'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

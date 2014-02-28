@@ -14,11 +14,12 @@ class CategoryForm(forms.ModelForm):
 
 
 class MovieForm(forms.ModelForm):
-    url = forms.URLField(max_length=300, help_text="Please enter the URL of the page.")
-    name = forms.CharField(max_length=128, help_text="Please enter the Movie name.")
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    #url = forms.URLField(max_length=300, help_text="Please enter the URL of the page.")
     email = forms.CharField(help_text="Please enter your email.")
+    name = forms.CharField(max_length=128, help_text="Please enter the Movie name.")
+    #views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
+    description = forms.Textarea()
     # An inline class to provide additional information on the form.
     class Meta:
         # Provide an association between the ModelForm and a model
