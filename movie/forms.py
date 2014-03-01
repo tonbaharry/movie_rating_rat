@@ -10,7 +10,7 @@ class MovieForm(forms.ModelForm):
    # coverPhoto = forms.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
    # trailer = forms.URLField()
     #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
-    #description = forms.TextInput()
+    description = forms.TextInput()
 
     # An inline class to provide additional information on the form.
     class Meta:
@@ -23,9 +23,9 @@ class MovieForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Please add your comment.......")
     #url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
-    #views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
-    description = forms.TextInput()
+    #description = forms.TextInput()
 
     class Meta:
         # Provide an association between the ModelForm and a model

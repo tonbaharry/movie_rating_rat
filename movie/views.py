@@ -170,7 +170,7 @@ def add_movie(request):
 
 
 @login_required
-def add_page(request, movie_name_url):
+def add_comments(request, movie_name_url):
     context = RequestContext(request)
     mov_list = get_movie_list()
     context_dict = {}
@@ -375,13 +375,13 @@ def track_url(request):
     page_id = None
     url = '/movie/'
     if request.method == 'GET':
-        if 'page_id' in request.GET:
-            page_id = request.GET['page_id']
+        if 'movie_id' in request.GET:
+            movie_id = request.GET['movie_id']
             try:
-                page = Comment.objects.get(id=page_id)
-                page.views = page.views + 1
-                page.save()
-                url = page.url
+                movie = Comment.objects.get(id=movie_id)
+                movie.views = movie.views + 1
+                movie.save()
+                url = movie.url
             except:
                 pass
 
@@ -421,7 +421,7 @@ def suggest_movie(request):
 
 
 @login_required
-def auto_add_page(request):
+def auto_comments(request):
     context = RequestContext(request)
     mov_id = None
     url = None
@@ -435,10 +435,10 @@ def auto_add_page(request):
             movie = Movie.objects.get(id=int(mov_id))
             p = Comment.objects.get_or_create(movie=movie, title=title, url=url)
 
-            pages = Comment.objects.filter(movie=movie).order_by('-views')
+            movies = Comment.objects.filter(movie=movie).order_by('-views')
 
             # Adds our results list to the template context under name pages.
-            context_dict['pages'] = pages
+            context_dict['movies'] = movies
 
     return render_to_response('movie/page_list.html', context_dict, context)
 

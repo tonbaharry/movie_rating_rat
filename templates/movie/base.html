@@ -79,26 +79,26 @@
                     {% endblock %}
                 </ul>
 
-		<ul class="nav nav-list">
-			<li class="nav-header">Find a Movie</li>
-			<form>
-			<label></label>
-			<li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
-			</form>
-		</ul>
+<ul class="nav nav-list">
+<li class="nav-header">Find a Movie</li>
+<form>
+<label></label>
+<li><input class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+</form>
+</ul>
 
         {% if mov_list %}
-		    <div id="movs">
-			    {% include 'movie/movie_list.html' with mov_list=mov_list %}
-		    </div>
-	    {% endif %}
+<div id="movs">
+{% include 'movie/movie_list.html' with mov_list=mov_list %}
+</div>
+{% endif %}
 <!---
-    <div id="cats">
-		   {% if mov_list %}
-			<ul class="nav nav-list"><li>Category List</li></ul>
-			   {% include 'movie/movie_list.html' with mov_list=mov_list %}
-		   {% endif %}
-		</div>
+<div id="cats">
+{% if mov_list %}
+<ul class="nav nav-list"><li>Category List</li></ul>
+{% include 'movie/movie_list.html' with mov_list=mov_list %}
+{% endif %}
+</div>
 --->
 
 
@@ -117,9 +117,9 @@
 <hr>
 
 <!---<footer>
-    <div class="container">
-        <p>&copy; Movie Rat: Movie Rating Website Glasgow University MSc IT/SD 2014</p>
-    </div>
+<div class="container">
+<p>&copy; Movie Rat: Movie Rating Website Glasgow University MSc IT/SD 2014</p>
+</div>
 </footer>-
 ---------------------------------->
 
@@ -133,4 +133,3 @@
 
 </body>
 </html>
-
