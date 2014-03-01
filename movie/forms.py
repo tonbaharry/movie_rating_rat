@@ -25,7 +25,7 @@ class CommentForm(forms.ModelForm):
     #url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
     #views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
-
+    description = forms.TextInput()
 
     class Meta:
         # Provide an association between the ModelForm and a model

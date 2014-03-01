@@ -20,7 +20,7 @@ class Movie(models.Model):
 class Comment(models.Model):
     movie = models.ForeignKey(Movie)
     views = models.IntegerField(default=0)
-    description = models.TextField(max_length=500)
+    description = models.TextField()
 
     def __unicode__(self):
         return self.title
