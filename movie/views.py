@@ -183,22 +183,22 @@ def add_comments(request, movie_name_url):
         if form.is_valid():
             # This time we cannot commit straight away.
             # Not all fields are automatically populated!
-            page = form.save(commit=False)
+            comment = form.save(commit=False)
 
             # Retrieve the associated Category object so we can add it.
             try:
                 mov = Movie.objects.get(name=movie_name)
-                page.movie = mov
+                comment.movie = mov
             except Movie.DoesNotExist:
                 return render_to_response('movie/add_comment.html',
                                           context_dict,
                                           context)
 
             # Also, create a default value for the number of views.
-            page.views = 0
+            comment.views = 0
 
             # With this, we can then save our new model instance.
-            page.save()
+            comment.save()
 
             # Now that the page is saved, display the category instead.
             return movie(request, movie_name_url)

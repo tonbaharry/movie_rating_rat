@@ -30,7 +30,7 @@
     <ul>
         {% for comment in comments %}
         <li>
-
+<p>Movie review: {{ comment.description }}</p>
             {% if comment.views > 1 %}
                 - ({{ comment.views }} views)
             {% elif comment.views == 1 %}
@@ -40,13 +40,13 @@
         {% endfor %}
     </ul>
     {% else %}
-    <strong>No comments yet Be the first.</strong><br/>
+    <strong>No reviews yet Be the first.</strong><br/>
     {% endif %}
 
     </div>
 
     {% if user.is_authenticated %}
-    <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Comment</a>
+    <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Movie Review</a>
     {% endif %}
 </div>
 
