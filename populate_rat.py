@@ -1,25 +1,23 @@
 import os
 
 def populate():
-    horror_mov = add_mov('Horror', views=128, likes=64)
+    horror_mov = add_mov('Horror','This was a veru funny movie i d like more of this',views=128, likes=64 )
 
-    # add_page(mov=horror_mov,
-    #     movie="Internet Movie Database",
-    #     url="http://imdb.com")
+    comment(mov=horror_mov,
+         description="This was a veru funny movie i 'd like more of this"
+         )
 
-    # add_page(mov=horror_mov,
-    #     movie="How to Think like a Computer Scientist",
-    #     url="http://www.greenteapress.com/thinkpython/")
+    comment(mov=horror_mov,
+    description="This was a veru funny movie i 'd like more of this"
+        )
 
-    # add_page(mov=horror_mov,
-    #     movie="Learn Python in 10 Minutes",
-    #     url="http://www.korokithakis.net/tutorials/python/")
 
-    comedy_mov = add_mov("Comedy", views=64, likes=32,description="jhjhjhjhjhjhjhjhjhjhjhjhjh")
 
-    # add_page(mov=comedy_mov,
-    #     movie="Official Django Tutorial",
-    #     url="https://docs.djangoproject.com/en/1.5/intro/tutorial01/")
+    comedy_mov = add_mov("Comedy", 'This was a veru funny movie i d like more of this',views=128, likes=32)
+
+    comment(mov=comedy_mov,
+        description="Official Django Tutorial",
+           )
 
     # add_page(mov=comedy_mov,
     #     movie="Django Rocks",
@@ -44,12 +42,12 @@ def populate():
     #     for p in Comment.objects.filter(movie=c):
     #         print "- {0} - {1}".format(str(c), str(p))
 
-# def add_page(mov, movie, url, views=0):
-#     p = Comment.objects.get_or_create(movie=mov,  views=views)[0]
-#     return p
+def comment(mov,  description):
+     p = Comment.objects.get_or_create(movie=mov, description=description)[0]
+     return p
 
-def add_mov(name, views=0, likes=0,description=0):
-    c = Movie.objects.get_or_create(name=name,views=views,likes=likes,description=description)[0]
+def add_mov(name,desc, views=0, likes=0,):
+    c = Movie.objects.get_or_create(name=name,desc=desc,views=views,likes=likes)[0]
     return c
 
 # Start execution here!
