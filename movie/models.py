@@ -6,11 +6,10 @@ class Movie(models.Model):
     name = models.CharField(max_length=200, unique=True)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0 )
-    #sale_end_time = models.DateField(help_text="date field needs formatting")
-    #releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
-    #coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
+    releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
+    coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg',help_text='add movie image')
     #trailer = models.Field(blank=True)
-    description = models.TextField(help_text="Please add a movie description")
+    desc = models.TextField(help_text="Please add a movie description")
 
 
     def __unicode__(self):

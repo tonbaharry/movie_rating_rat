@@ -4,8 +4,8 @@ from movie.models import Comment, Movie, UserProfile
 
 class MovieForm(forms.ModelForm):
     name = forms.CharField(max_length=200, help_text="Please enter the movie name.")
-    views = forms.IntegerField()
-    likes = forms.IntegerField()
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     #releaseYear = forms.DateTimeField(help_text="Please enter the release date")
    # coverPhoto = forms.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg')
    # trailer = forms.URLField()

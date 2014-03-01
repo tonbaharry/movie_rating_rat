@@ -57,8 +57,8 @@ def index(request):
     mov_list = get_movie_list()
     context_dict['mov_list'] = mov_list
 
-    page_list = Comment.objects.order_by('-views')[:5]
-    context_dict['pages'] = page_list
+    comment_list = Comment.objects.order_by('-views')[:5]
+    context_dict['comments'] = comment_list
 
     if request.session.get('last_visit'):
     # The session has a value for the last visit
@@ -93,7 +93,7 @@ def about(request):
     # Return and render the response, ensuring the count is passed to the template engine.
     return render_to_response('movie/about.html', context_dict, context)
 
-
+    #-------------------------------------------------------------------------------------------------
 def movie(request, movie_name_url):
     # Request our context
     context = RequestContext(request)
@@ -116,10 +116,10 @@ def movie(request, movie_name_url):
         context_dict['movie'] = movie
         # Retrieve all the associated pages.
         # Note that filter returns >= 1 model instance.
-        pages = Comment.objects.filter(movie=movie).order_by('-views')
+        comments = Comment.objects.filter(movie=movie).order_by('-views')
 
         # Adds our results list to the template context under name pages.
-        context_dict['pages'] = pages
+        context_dict['comments'] = comments
     except Movie.DoesNotExist:
         # We get here if the movie does not exist.
         # Will trigger the template to display the 'no category' message.
@@ -134,7 +134,7 @@ def movie(request, movie_name_url):
 
     # Go render the response and return it to the client.
     return render_to_response('movie/movie.html', context_dict, context)
-
+#------------------------------------------------------------------------------------------
 
 @login_required
 def add_movie(request):
@@ -400,8 +400,8 @@ def like_movie(request):
         movie = Movie.objects.get(id=int(mov_id))
         if movie:
             likes = movie.likes + 1
-            movie.likes = likes
-            movie.save()
+        movie.likes = likes
+        movie.save()
 
     return HttpResponse(likes)
 

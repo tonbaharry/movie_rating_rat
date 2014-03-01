@@ -25,8 +25,8 @@ $(document).ready(function() {
         var url = $(this).attr("data-url");
         var title = $(this).attr("data-title");
         var me = $(this)
-	    $.get('/movie/auto_add_page/', {movie_id: movid, url: url, title: title}, function(data){
-	                   $('#pages').html(data);
+	    $.get('/movie/auto_comment/', {movie_id: movid, url: url, title: title}, function(data){
+	                   $('#movies').html(data);
 	                   me.hide();
 	               });
 	    });

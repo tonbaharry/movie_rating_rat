@@ -14,8 +14,8 @@ urlpatterns = patterns('',
 	url(r'^search/$', views.search, name='search'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^goto/$', views.track_url, name='track_url'),
-    url(r'^like_category/$', views.like_movie, name='like_category'),
-    url(r'^suggest_category/$', views.suggest_movie, name='suggest_category'),
-    url(r'^auto_comments/$', views.auto_comments, name='auto_add_page'),
+    url(r'^like_movie/$', views.like_movie, name='like_movie'),
+    url(r'^suggest_category/$', views.suggest_movie, name='suggest_movie'),
+    url(r'^auto_comments/$', views.auto_comments, name='auto_comments'),
 	)
 

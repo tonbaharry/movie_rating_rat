@@ -19,26 +19,26 @@
  <!--movie description----------------------------------->
     <div class="hero-unit">
 
-        <p>Movie Description: {{ movie.description }}</p>
+        <p>Movie Description: {{ movie.desc }}</p>
 
     </div>
 <!---------------------------------------->
     <br/>
 
     <div id="pages">
-    {% if pages %}
+    {% if comments %}
+    <ul>
+        {% for comment in comments %}
+        <li>
 
-        {% for page in pages %}
-
-
-            {% if page.views > 1 %}
-                - ({{ page.views }} views)
-            {% elif page.views == 1 %}
-                - ({{ page.views }} view)
+            {% if comment.views > 1 %}
+                - ({{ comment.views }} views)
+            {% elif comment.views == 1 %}
+                - ({{ comment.views }} view)
             {% endif %}
-            <p>comment{{ commentform.title }}</p>
+        </li>
         {% endfor %}
-
+    </ul>
     {% else %}
     <strong>No comments yet Be the first.</strong><br/>
     {% endif %}
