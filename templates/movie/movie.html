@@ -5,8 +5,6 @@
 {% block body_block %}
 <div class="hero-unit">
     <h1>{{ movie_name }}</h1>
-
-
 {% if movie %}
     <p>
 	<b id="like_count">{{ movie.likes }}</b> people like this movie
@@ -15,25 +13,46 @@
 	{% if user.is_authenticated %}
 		<button id ="likes" data-movid="{{mov.id}}" class="btn btn-mini btn-primary" type="button">like</button>
 	{% endif %}
+     <div class="jumbotron">
+    <div class="container">
+    {% if user.is_authenticated %}
+    <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+    {% endif %}
+</div></div>
     </p>
+</div>
  <!--movie description----------------------------------->
-    <div class="hero-unit">
-        <p>Photo: {{ movie.coverPhoto }}</p>
-        <p>Release Year: {{ movie.releaseYear }}</p>
-        <p>Genre: {{ movie.genre }}</p>
-        <p>Movie Description: {{ movie.desc| linebreaks }}</p>
+    <div class="jumbotron">
 
+        <h1>Movie Details</h1>
+        <div class="hero-unit">
+        <p><b>Photo:</b> {{ movie.coverPhoto }}</p>
+        <p><b>Release Year:</b> {{ movie.releaseYear }}</p>
+        <p><b>Genre:</b> {{ movie.genre }}</p>
 
     </div>
-<!---------------------------------------->
-    <br/>
+    <div class="jumbotron">
+        <h1>Movie Description:</h1>
+<div class="hero-unit">
+        <p> {{ movie.desc| linebreaks }}</p>
+ </div>
+    </div>
 
-    <div id="pages">
+</div>
+    <!----------------------------------------------------->
+<div class="jumbotron">
+
+<h1>Reviews</h1>
+
+  <div class="hero-unit">
+
     {% if comments %}
     <ul>
         {% for comment in comments %}
-
-            <p>Movie review: {{ comment.description }}</p>
+<div class="jumbotron">
+            <h3>Movie review: </h3>
+            </div>
+                <p>{{ comment.description }}</p>
             {% if comment.views > 1 %}
                 - ({{ comment.views }} views)
             {% elif comment.views == 1 %}
@@ -43,15 +62,23 @@
         {% endfor %}
     </ul>
     {% else %}
-    <strong>No reviews yet Be the first.</strong><br/>
-    {% endif %}
-
-    </div>
-
+    <strong> <div class="jumbotron">
+    <div class="container">
     {% if user.is_authenticated %}
     <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Movie Review</a>
     {% endif %}
+</div></div></strong><br/>
+    {% endif %}
 </div>
+   </div>
+
+<!---------------------------------------->
+    <br/>
+
+
+
+
+
 
 <div class="hero-unit">
 	<div class="container-fluid">
@@ -62,7 +89,7 @@
 			<button type="submit" class="btn btn-success" name="submit" value="Search">Search</button>
 		</form>
 	</div>
-	
+
 	<div class="container-fluid">
 		{% if result_list %}
 			<!-- Display search results in an ordered list -->
@@ -83,7 +110,9 @@
 		{% endif %}
 	</div>
 {% else %}
-	The specified movie {{ movie_name }} does not exist!</div>
+	The specified movie {{ movie_name }} does not exist!
+
+</div>
 {% endif %}
 
 </div>
