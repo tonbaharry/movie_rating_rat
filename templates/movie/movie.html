@@ -18,8 +18,11 @@
     </p>
  <!--movie description----------------------------------->
     <div class="hero-unit">
+        <p>Photo: {{ movie.coverPhoto }}</p>
+        <p>Release Year: {{ movie.releaseYear }}</p>
+        <p>Genre: {{ movie.genre }}</p>
+        <p>Movie Description: {{ movie.desc| linebreaks }}</p>
 
-        <p>Movie Description: {{ movie.desc }}</p>
 
     </div>
 <!---------------------------------------->
@@ -29,14 +32,14 @@
     {% if comments %}
     <ul>
         {% for comment in comments %}
-        <li>
-<p>Movie review: {{ comment.description }}</p>
+
+            <p>Movie review: {{ comment.description }}</p>
             {% if comment.views > 1 %}
                 - ({{ comment.views }} views)
             {% elif comment.views == 1 %}
                 - ({{ comment.views }} view)
             {% endif %}
-        </li>
+
         {% endfor %}
     </ul>
     {% else %}

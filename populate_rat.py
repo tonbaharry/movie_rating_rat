@@ -1,7 +1,7 @@
 import os
 
 def populate():
-    horror_mov = add_mov('Horror','This was a veru funny movie i d like more of this',views=128, likes=64 )
+    horror_mov = add_mov('zuma','This was a veru funny movie i d like more of this','Comedy',releaseYear=1930,views=128, likes=64 )
 
     comment(mov=horror_mov,
          description="This was a veru funny movie i 'd like more of this"
@@ -13,41 +13,25 @@ def populate():
 
 
 
-    comedy_mov = add_mov("Comedy", 'This was a veru funny movie i d like more of this',views=128, likes=32)
+    comedy_mov = add_mov("Comedy", 'This was a veru funny movie i d like more of this','Document',releaseYear=2012,views=128, likes=32)
 
     comment(mov=comedy_mov,
         description="Official Django Tutorial",
            )
 
-    # add_page(mov=comedy_mov,
-    #     movie="Django Rocks",
-    #     url="http://www.djangorocks.com/")
 
-    # add_page(mov=comedy_mov,
-    #     movie="How to Tango with Django",
-    #     url="http://www.tangowithdjango.com/")
 
-    # document_mov = add_mov("Document", views=32, likes=16)
-
-    # add_page(mov=document_mov,
-    #     movie="Bottle",
-    #     url="http://bottlepy.org/docs/dev/")
-
-    # add_page(mov=document_mov,
-    #     movie="Flask",
-    #     url="http://flask.pocoo.org")
-
-    # # Print out what we have added to the user.
-    # for c in Movie.objects.all():
-    #     for p in Comment.objects.filter(movie=c):
-    #         print "- {0} - {1}".format(str(c), str(p))
+    # Print out what we have added to the user.
+    for c in Movie.objects.all():
+         for p in Comment.objects.filter(movie=c):
+             print "- {0} - {1}".format(str(c), str(p))
 
 def comment(mov,  description):
      p = Comment.objects.get_or_create(movie=mov, description=description)[0]
      return p
 
-def add_mov(name,desc, views=0, likes=0,):
-    c = Movie.objects.get_or_create(name=name,desc=desc,views=views,likes=likes)[0]
+def add_mov(name,desc,genre ,releaseYear=0,views=0, likes=0,):
+    c = Movie.objects.get_or_create(name=name,desc=desc,genre=genre,releaseYear=releaseYear,views=views,likes=likes)[0]
     return c
 
 # Start execution here!

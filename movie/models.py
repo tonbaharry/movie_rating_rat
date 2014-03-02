@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 
 
 class Movie(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=128,)
+    genre=models.TextField(max_length=128)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0 )
-    releaseYear = models.DateTimeField(auto_now=True, auto_now_add=True)
+    releaseYear = models.IntegerField(default=1900)
     coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg',help_text='add movie image')
     #trailer = models.Field(blank=True)
-    desc = models.TextField(help_text="Please add a movie description")
+    desc = models.TextField(max_length=200,help_text="Please add a movie description")
 
 
     def __unicode__(self):
@@ -22,7 +23,7 @@ class Comment(models.Model):
     description = models.TextField()
 
     def __unicode__(self):
-        return self.title
+        return self.movie
 
 
 class UserProfile(models.Model):
