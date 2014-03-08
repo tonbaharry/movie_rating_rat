@@ -95,11 +95,10 @@ def about(request):
 
     #-------------------------------------------------------------------------------------------------
 def movie(request, movie_name_url):
-    # Request our context
+
     context = RequestContext(request)
 
-    # Change underscores in the category name to spaces.
-    # URL's don't handle spaces well, so we encode them as underscores.
+
     movie_name = decode_url(movie_name_url)
 
     # Build up the dictionary we will use as out template context dictionary.
