@@ -8,7 +8,7 @@ class MovieForm(forms.ModelForm):
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     releaseYear = forms.CharField(help_text="Please enter the release date")
     genre = forms.CharField(max_length=200, help_text='Enter movie genre')
-    #coverPhoto = forms.ImageField()
+    coverPhoto = forms.ImageField()
    # trailer = forms.URLField()
     #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
     description = forms.TextInput(attrs={'size': 10})
@@ -22,7 +22,7 @@ class MovieForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    #title = forms.CharField(max_length=0, help_text="Please add your comment.......")
+    title = forms.CharField(max_length=200, help_text="Review Title")
     #url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
@@ -36,7 +36,7 @@ class CommentForm(forms.ModelForm):
         # This way we don't need every field in the model present.
         # Some fields may allow NULL values, so we may not want to include them...
         # Here, we are hiding the foreign keys
-        fields = ( 'views','description')
+        fields = ( 'title','views','description')
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(help_text="Please enter a username.")

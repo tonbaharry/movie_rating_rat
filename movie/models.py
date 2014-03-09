@@ -1,14 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
 class Movie(models.Model):
     name = models.CharField(max_length=128,)
     genre=models.TextField(max_length=128)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0 )
     releaseYear = models.IntegerField(default=1900)
-    coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rango.jpg',help_text='add movie image')
+    coverPhoto = models.ImageField(upload_to='movie_images', default='media/profile_images/rat.jpg',help_text='add movie image')
     #trailer = models.Field(blank=True)
     desc = models.TextField(max_length=200,help_text="Please add a movie description")
 
@@ -18,6 +17,7 @@ class Movie(models.Model):
 
 
 class Comment(models.Model):
+    title = models.CharField(max_length=128,)
     movie = models.ForeignKey(Movie)
     views = models.IntegerField(default=0)
     description = models.TextField()

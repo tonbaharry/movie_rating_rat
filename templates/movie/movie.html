@@ -7,7 +7,9 @@
     <h1>{{ movie_name }}</h1>
 {% if movie %}
     <p>
-	<b id="like_count">{{ movie.likes }}</b> people like this movie
+	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b>
+
+
 
 
 	{% if user.is_authenticated %}
@@ -26,7 +28,7 @@
 
         <h1>Movie Details</h1>
         <div class="hero-unit">
-        <p><b>Photo:</b> {{ movie.coverPhoto }}</p>
+        <b>Photo:</b> <img src="{{ movie.coverPhoto.url }}"  />
         <p><b>Release Year:</b> {{ movie.releaseYear }}</p>
         <p><b>Genre:</b> {{ movie.genre }}</p>
 
@@ -50,14 +52,23 @@
     <ul>
         {% for comment in comments %}
 <div class="jumbotron">
-            <h3>Movie review: </h3>
+            <h3>{{ comment.title }}</h3>
             </div>
                 <p>{{ comment.description }}</p>
+
+
+<a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a>
+
             {% if comment.views > 1 %}
-                - ({{ comment.views }} views)
+                 ({{ comment.views }} liked)
             {% elif comment.views == 1 %}
-                - ({{ comment.views }} view)
+                 ({{ comment.views }} liked)</br>
             {% endif %}
+
+
+
+ <a href="/movie/movie/{{ movie_name_url }}/comment/">Add New Review</a>
+
 
         {% endfor %}
     </ul>

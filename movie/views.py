@@ -26,7 +26,7 @@ def decode_url(str):
 def get_movie_list(max_results=0, starts_with=''):
     mov_list = []
     if starts_with:
-        mov_list = Movie.objects.filter(name__startswith=starts_with)
+        mov_list = Movie.objects.filter(name__istartswith=starts_with)
     else:
         mov_list = Movie.objects.all()
 
@@ -59,6 +59,9 @@ def index(request):
 
     comment_list = Comment.objects.order_by('-views')[:5]
     context_dict['comments'] = comment_list
+
+
+
 
     if request.session.get('last_visit'):
     # The session has a value for the last visit
@@ -369,22 +372,7 @@ def profile(request):
     return render_to_response('movie/profile.html', context_dict, context)
 
 
-def track_url(request):
-    context = RequestContext(request)
-    page_id = None
-    url = '/movie/'
-    if request.method == 'GET':
-        if 'movie_id' in request.GET:
-            movie_id = request.GET['movie_id']
-            try:
-                movie = Comment.objects.get(id=movie_id)
-                movie.views = movie.views + 1
-                movie.save()
-                url = movie.url
-            except:
-                pass
 
-    return redirect(url)
 
 
 @login_required
@@ -403,6 +391,23 @@ def like_movie(request):
         movie.save()
 
     return HttpResponse(likes)
+def track_url(request):
+    context = RequestContext(request)
+    comment_id = None
+    url = '/movie/'
+    if request.method == 'GET':
+        if 'comment_id' in request.GET:
+            comment_id = request.GET['comment_id']
+            try:
+                comment = Comment.objects.get(id=comment_id)
+                comment.views = comment.views + 1
+                comment.save()
+                url = comment.url
+            except:
+                pass
+
+    return redirect(url)
+
 
 
 def suggest_movie(request):
