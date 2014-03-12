@@ -85,7 +85,7 @@ def index(request):
     
 
     for movi in movi_list:
-        movie.url = encode_url(movie.name)
+        movi.url = encode_url(movie.name)
 
     context_dictr = {'movi': movi_list}
     context_dict['movi'] = movi_list
