@@ -10,7 +10,7 @@
 	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b>
 
 
-
+           
 
 	{% if user.is_authenticated %}
 		<button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button>
@@ -19,8 +19,18 @@
     <div class="container">
     {% if user.is_authenticated %}
     <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+
+           
+
+
+
     {% endif %}
-</div></div>
+
+
+
+
+</div>
+</div>
     </p>
 </div>
  <!--movie description----------------------------------->

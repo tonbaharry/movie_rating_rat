@@ -4,14 +4,7 @@
 
 {% block body_block %}
 
- <!-------Scrolling movie Images---->
-    <div class="hero-unit">
-        <div class = "slider">
-    <img src="/static/img/12years.jpg">
-   <img src="/static/rat.jpg">
-    <img src="/static/img/star.gif">
-  </div>
-</div>
+
 
 
 
@@ -24,6 +17,7 @@
 
 <div class="row-fluid">
     <div class="span6">
+
         <h2>Top Five Reviews</h2>
         {% if comments %}
         <ul>
@@ -42,7 +36,20 @@
         {% if movie %}
         <ul>
             {% for movie in movie %}
-            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> </li>
+            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No movies at present.</strong>
+        {% endif %}
+
+    </div>
+    <div class="span6">
+        <h2>Worst Five Movies</h2>
+        {% if movi %}
+        <ul>
+            {% for movie in movi %}
+            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li>
             {% endfor %}
         </ul>
         {% else %}

@@ -39,15 +39,38 @@ def get_movie_list(max_results=0, starts_with=''):
 
     return mov_list
 
+    for movin in com_list:
+        cmov.url = encode_url(mov.name)
 
+    return mov_list
 
+def get_worst_movie_list(max_results=0, starts_with=''):
+    worst_mov_list = []
+    if starts_with:
+        worst_mov_list = Movie.objects.filter(name__istartswith=starts_with)
+    else:
+        worst_mov_list = Movie.objects.all()
+
+    if max_results > 0:
+        if (len(worst_mov_list) > max_results):
+            worst_mov_list = worst_mov_list[:max_results]
+
+    for worst_mov in worst_mov_list:
+        worst_mov.url = encode_url(worst_mov.name)
+
+    return worst_mov_list
+
+    for worst_movin in worst_com_list:
+        worst_cmov.url = encode_url(mov.name)
+
+    return worst_mov_list
 
 
 def index(request):
     context = RequestContext(request)
 
     top_movie_list = Movie.objects.order_by('-likes')[:5]
-
+    movi_list = Movie.objects.order_by('likes')[:5]
 
     for movie in top_movie_list:
         movie.url = encode_url(movie.name)
@@ -56,6 +79,17 @@ def index(request):
 
     mov_list = get_movie_list()
     context_dict['mov_list'] = mov_list
+#-------------------------------------------------------------------
+
+
+    
+
+    for movi in movi_list:
+        movie.url = encode_url(movie.name)
+
+    context_dictr = {'movi': movi_list}
+    context_dict['movi'] = movi_list
+
 
     comment_list = Comment.objects.order_by('-views')[:5]
     context_dict['comments'] = comment_list
