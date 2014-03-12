@@ -3,6 +3,18 @@
 {% block title %}Welcome Movie Rat!{% endblock %}
 
 {% block body_block %}
+
+ <!-------Scrolling movie Images---->
+    <div class="hero-unit">
+        <div class = "slider">
+    <img src="/static/img/12years.jpg">
+   <img src="/static/rat.jpg">
+    <img src="/static/img/star.gif">
+  </div>
+</div>
+
+
+
 <div class="hero-unit">
     <img src="/static/rat_small.jpg" />
     <h1>Movie Rat</h1>
@@ -16,7 +28,7 @@
         {% if comments %}
         <ul>
             {% for comment in comments %}
-            <li><a href="/movie/movie/{{comment.movie}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie}} | {{comment.views}} like(s)</li>
+            <li><a href="/movie/movie/{{comment.movie|urlencode:""}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie}} | {{comment.views}} like(s)</li>
             {% endfor %}
         </ul>
         {% else %}
