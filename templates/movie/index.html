@@ -7,13 +7,66 @@
 
 
 
-
 <div class="hero-unit">
-    <img src="/static/rat_small.jpg" />
+
     <h1>Movie Rat</h1>
 
     <p>Movie Rating Website.</p>
+    <!-------Scrolling movie Images---->
+                <!--<div class="hero-unit">-->
+                    <!-- <div class='container-fluid pull-left'> -->
+                                        <!-- Carousel
+                                        ================================================== -->
+                                        <div id="myCarousel" class="carousel slide">
+                                            <div class="carousel-inner">
+
+                                                <div class="item active">
+                                                    <iframe width="860" height="415" src="//www.youtube.com/embed/mmpSCvlZ7hY" frameborder="0" allowfullscreen></iframe>
+                                               </div>
+
+                                                <div class="item">
+                                                   <iframe width="860" height="415" src="//www.youtube.com/embed/z02Ie8wKKRg" frameborder="0" allowfullscreen></iframe>
+                                                    </div>
+
+                                                <div class="item">
+                                               <iframe width="860" height="415" src="//www.youtube.com/embed/5klp6rkHIks" frameborder="0" allowfullscreen></iframe>
+                                                    </div>
+
+                                                <div class="item">
+                                                <iframe width="860" height="415" src="//www.youtube.com/embed/lLG_RokHHRI" frameborder="0" allowfullscreen></iframe>
+                                                </div>
+
+                                               <div class="item">
+                                                 <iframe width="860" height="415" src="//www.youtube.com/embed/YWDM_p68HAQ" frameborder="0" allowfullscreen></iframe>
+                                                 </div>
+                                       <!-- Carousel Controls -->
+
+                                             </div> <!-- /.carousel -->
+
+                                           <a class="left carousel-control" href="index.html#myCarousel" data-slide="prev">&lsaquo;</a>
+                                            <a class="right carousel-control" href="index.html#myCarousel" data-slide="next">&rsaquo;</a>
+
+                                         </div> <!-- /.container-fluid -->
+                    <!-- </div> end container-fluid -->
 </div>
+
+
+
+<!--- Category list on the home page -->
+                <div class="cats" >
+                             {% if movie %}
+                            {% for movie in movie %}
+                             <a class="btn btn-primary btn-lg" role="button" href="/movie/movie/{{ movie.url }}">{{ movie.name }}</a>
+                            {% endfor %}
+                        {% else %}
+                        <strong>No Categories at present.</strong>
+                        {% endif %}
+                </div>
+
+
+
+
+
 
 <div class="row-fluid">
     <div class="span6">
@@ -31,7 +84,7 @@
 
     </div>
 
-<div class="span6">
+    <div class="span6">
         <h2>Top Five Movies</h2>
         {% if movie %}
         <ul>
@@ -58,9 +111,6 @@
 
     </div>
 
-    <!--/span-->
-
-    <!--/span-->
 </div><!--/row-->
 
 
