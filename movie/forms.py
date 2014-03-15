@@ -9,8 +9,6 @@ class MovieForm(forms.ModelForm):
     releaseYear = forms.CharField(help_text="Please enter the release date")
     genre = forms.CharField(max_length=200, help_text='Enter movie genre')
     coverPhoto = forms.ImageField(help_text="Select a movie image to upload.", required=False)
-   # trailer = forms.URLField()
-    #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
     description = forms.TextInput(attrs={'size': 10})
 
     # An inline class to provide additional information on the form.
@@ -23,9 +21,7 @@ class MovieForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     title = forms.CharField(max_length=200, help_text="Review Title")
-    #url = forms.URLField(max_length=200, help_text="Please enter the URL of the page.")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    #description = forms.TextInput(attrs={'size': 10, 'title': 'Movie Description',})
     description = forms.TextInput()
 
     class Meta:

@@ -1,19 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
+class Genre(models.Model):
+    name = models.CharField(max_length=128,unique=True)
+    
+
+    def __unicode__(self):
+        return self.name
+
 class Movie(models.Model):
-    name = models.CharField(max_length=128,)
-    genre=models.TextField(max_length=128)
+    name = models.CharField(max_length=128,unique=True)
+    genre=models.ForeignKey(Genre)
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0 )
     releaseYear = models.IntegerField(default=1900)
     coverPhoto = models.ImageField(upload_to='movie_images', default='profile_images/rat.jpg',help_text='add movie image')
-    #trailer = models.Field(blank=True)
     desc = models.TextField(max_length=200,help_text="Please add a movie description")
 
 
     def __unicode__(self):
         return self.name
+
+
+
 
 
 class Comment(models.Model):
@@ -23,7 +34,7 @@ class Comment(models.Model):
     description = models.TextField()
 
     def __unicode__(self):
-        return self.movie
+        return self.title
 
 
 class UserProfile(models.Model):

@@ -1,6 +1,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from movie.models import Genre
 from movie.models import Movie
 from movie.models import Comment
 from movie.models import UserProfile
@@ -40,7 +41,7 @@ def get_movie_list(max_results=0, starts_with=''):
     return mov_list
 
     for movin in com_list:
-        cmov.url = encode_url(mov.name)
+        mov.url = encode_url(mov.name)
 
     return mov_list
 
@@ -69,6 +70,9 @@ def get_worst_movie_list(max_results=0, starts_with=''):
 def index(request):
     context = RequestContext(request)
 
+
+#------------------------------------------------------------------
+
     top_movie_list = Movie.objects.order_by('-likes')[:5]
     movi_list = Movie.objects.order_by('likes')[:5]
 
@@ -84,15 +88,28 @@ def index(request):
 
     
 
-    for movi in movi_list:
-        movi.url = encode_url(movie.name)
+    for movie in movi_list:
+        movie.url = encode_url(movie.name)
 
     context_dictr = {'movi': movi_list}
     context_dict['movi'] = movi_list
 
-
+#-----------------------------------------------------------
+    
     comment_list = Comment.objects.order_by('-views')[:5]
+
+    # context_dictr = {'comments': comment_list} 
+
     context_dict['comments'] = comment_list
+
+
+#-------------------------------------------------------
+    genre_list = Genre.objects.all()
+
+    for genre in genre_list:
+        movie.url = genre.name.replace(' ', '_')
+    # context_dicte = {'genres': comment_list} 
+    context_dict['genres']=  genre_list
 
 
 
@@ -111,7 +128,41 @@ def index(request):
         request.session['visits'] = 1
     return render_to_response('movie/index.html', context_dict, context)
     #----------------------------------------------------
+def genre(request, genre_name_url):
+    # Request our context from the request passed to us.
+    context = RequestContext(request)
 
+    # Change underscores in the category name to spaces.
+    # URLs don't handle spaces well, so we encode them as underscores.
+    # We can then simply replace the underscores with spaces again to get the name.
+    genre_name = genre_name_url.replace('_', ' ')
+
+    # Create a context dictionary which we can pass to the template rendering engine.
+    # We start by containing the name of the category passed by the user.
+    context_dict = {'genre_name': genre_name}
+
+    try:
+        # Can we find a category with the given name?
+        # If we can't, the .get() method raises a DoesNotExist exception.
+        # So the .get() method returns one model instance or raises an exception.
+        genre = Genre.objects.get(name=genre_name)
+
+        # Retrieve all of the associated pages.
+        # Note that filter returns >= 1 model instance.
+        movie = Movie.objects.filter(genre=genre)
+
+        # Adds our results list to the template context under name pages.
+        context_dict['movie'] = movie
+        # We also add the category object from the database to the context dictionary.
+        # We'll use this in the template to verify that the category exists.
+        context_dict['genre'] = genre
+    except Genre.DoesNotExist:
+        # We get here if we didn't find the specified category.
+        # Don't do anything - the template displays the "no category" message for us.
+        pass
+
+    # Go render the response and return it to the client.
+    return render_to_response('movie/genre.html', context_dict, context)
 
 
 def about(request):

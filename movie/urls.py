@@ -17,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^like_movie/$', views.like_movie, name='like_movie'),
     url(r'^suggest_movie/$', views.suggest_movie, name='suggest_movie'),
     url(r'^auto_comments/$', views.auto_comments, name='auto_comments'),
+    url(r'^genre/(?P<genre_name_url>\w+)/$', views.genre, name='genre'),
 	)
 

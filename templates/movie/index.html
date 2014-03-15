@@ -4,12 +4,12 @@
 
 {% block body_block %}
 
+<h1>Movie Rat</h1>
 
 
 
-<div class="hero-unit">
 
-    <h1>Movie Rat</h1>
+    
 
     <p>Movie Rating Website.</p>
     <!-------Scrolling movie Images---->
@@ -48,15 +48,16 @@
 
                                          </div> <!-- /.container-fluid -->
                     <!-- </div> end container-fluid -->
-</div>
+
 
 
 
 <!--- Category list on the home page -->
                 <div class="cats" >
-                             {% if movie %}
-                            {% for movie in movie %}
-                             <a class="btn btn-primary btn-lg" role="button" href="/movie/movie/{{ movie.url }}">{{ movie.name }}</a>
+                    <h3>Rat Categories!</h3>
+                             {% if genres%}
+                            {% for genre in genres %}
+                             <a class="btn btn-primary btn-lg" role="button" href="/movie/genre/{{ genre.name }}">{{ genre.name }}</a>
                             {% endfor %}
                         {% else %}
                         <strong>No Categories at present.</strong>
@@ -64,18 +65,18 @@
                 </div>
 
 
+</br>
 
 
 
-
-<div class="row-fluid">
+<div class="pull-left">
     <div class="span6">
 
         <h2>Top Five Reviews</h2>
-        {% if comments %}
+        {% if movie %}
         <ul>
             {% for comment in comments %}
-            <li><a href="/movie/movie/{{comment.movie|urlencode:""}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie}} | {{comment.views}} like(s)</li>
+            <li><a href="/movie/movie/{{comment.movie}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie}} | {{comment.views}} like(s)</li>
             {% endfor %}
         </ul>
         {% else %}
@@ -83,6 +84,24 @@
         {% endif %}
 
     </div>
+
+<!-- <div class="span6">
+
+        <h1>Top Categories!</h1>
+
+        {% if genres %}
+            <ul>
+                {% for genre in genres %}
+                <li>{{ genre.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+
+    </div> -->
+
+
 
     <div class="span6">
         <h2>Top Five Movies</h2>

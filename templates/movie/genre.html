@@ -1,0 +1,43 @@
+{% extends "movie/base.html" %}
+
+{% block title %}{{ movie_name }}{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+        <h1>{{ genre_name }} Movies</h1>
+        {% if genre %}
+            {% if movie %}
+            <ul>
+                {% for movie in movie %}
+                <li>{{ movie.name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No movies currently in this category.</strong>
+            {% endif %}
+        {% else %}
+            The specified category {{ genre_name }} does not exist!
+        {% endif %}
+
+
+
+
+</div>
+
+ <div class="span6">
+        <h2>Top Five Movies</h2>
+        {% if movie %}
+        <ul>
+            {% for movie in movie %}
+            <li><a href="/movie/movie/{{ movie.name }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No movies at present.</strong>
+        {% endif %}
+</div>
+
+<!--/row-->
+
+
+{% endblock %}
