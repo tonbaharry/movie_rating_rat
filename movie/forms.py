@@ -7,7 +7,7 @@ class MovieForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     releaseYear = forms.CharField(help_text="Please enter the release date")
-    genre = forms.CharField(max_length=200, help_text='Enter movie genre')
+    #genre = forms.CharField(max_length=200, help_text='Enter movie genre')
     coverPhoto = forms.ImageField(help_text="Select a movie image to upload.", required=False)
     description = forms.TextInput(attrs={'size': 10})
 

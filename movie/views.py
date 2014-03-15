@@ -74,7 +74,7 @@ def index(request):
 #------------------------------------------------------------------
 
     top_movie_list = Movie.objects.order_by('-likes')[:5]
-    movi_list = Movie.objects.order_by('likes')[:5]
+    
 
     for movie in top_movie_list:
         movie.url = encode_url(movie.name)
@@ -85,7 +85,7 @@ def index(request):
     context_dict['mov_list'] = mov_list
 #-------------------------------------------------------------------
 
-
+    movi_list = Movie.objects.order_by('likes')[:5]
     
 
     for movie in movi_list:
@@ -97,8 +97,9 @@ def index(request):
 #-----------------------------------------------------------
     
     comment_list = Comment.objects.order_by('-views')[:5]
-
-    # context_dictr = {'comments': comment_list} 
+    # for comment in comment_list:
+    #     comment.movie= encode_url(comment.movie)
+    # # context_dictr = {'comments': comment_list} 
 
     context_dict['comments'] = comment_list
 
@@ -106,8 +107,8 @@ def index(request):
 #-------------------------------------------------------
     genre_list = Genre.objects.all()
 
-    for genre in genre_list:
-        movie.url = genre.name.replace(' ', '_')
+    # for genre in genre_list:
+    #     movie.url = genre.name.replace(' ', '_')
     # context_dicte = {'genres': comment_list} 
     context_dict['genres']=  genre_list
 
@@ -135,8 +136,8 @@ def genre(request, genre_name_url):
     # Change underscores in the category name to spaces.
     # URLs don't handle spaces well, so we encode them as underscores.
     # We can then simply replace the underscores with spaces again to get the name.
-    genre_name = genre_name_url.replace('_', ' ')
-
+    genre_name = decode_url(genre_name_url)
+    context_dict = {'genre_name': genre_name, 'genre_name_url': genre_name_url}
     # Create a context dictionary which we can pass to the template rendering engine.
     # We start by containing the name of the category passed by the user.
     context_dict = {'genre_name': genre_name}
