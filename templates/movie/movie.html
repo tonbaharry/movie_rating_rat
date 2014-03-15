@@ -19,11 +19,6 @@
     <div class="container">
     {% if user.is_authenticated %}
     <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
-
-           
-
-
-
     {% endif %}
 
 
@@ -33,7 +28,7 @@
 </div>
     </p>
 </div>
- <!--movie description----------------------------------->
+ <!-- movie description- -->
     <div class="jumbotron">
 
         <h1>Movie Details</h1>
@@ -51,7 +46,7 @@
     </div>
 
 </div>
-    <!----------------------------------------------------->
+   <!--  -->
 <div class="jumbotron">
 
 <h1>Reviews</h1>
@@ -66,9 +61,9 @@
             </div>
                 <p>{{ comment.description }}</p>
 
-
+{% if user.is_authenticated %}
 <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a>
-
+{% endif %}
             {% if comment.views > 1 %}
                  ({{ comment.views }} liked)
             {% elif comment.views == 1 %}
@@ -76,9 +71,9 @@
             {% endif %}
 
 
-
+{% if user.is_authenticated %}
  <a href="/movie/movie/{{ movie_name_url }}/comment/">Add New Review</a>
-
+{% endif %}
 
         {% endfor %}
     </ul>
