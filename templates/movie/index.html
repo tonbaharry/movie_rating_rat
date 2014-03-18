@@ -69,7 +69,8 @@
         {% if movie %}
         <ul>
             {% for comment in comments %}
-            <li><a href="/movie/movie/{{comment.url}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie.name}} | {{comment.views}} like(s)</li>
+            <a href="/movie/movie/{{comment.url}}" class="btn btn-info btn-small"><i class="icon-white icon-heart"></i>{{ comment.title }}</a> </br>| <b>Movie Name:</b> {{ comment.movie.name}} | {{comment.views}} like(s)</br></a>
+            <!-- <li><a href="/movie/movie/{{comment.url}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie.name}} | {{comment.views}} like(s)</li> -->
             {% endfor %}
         </ul>
         {% else %}
@@ -101,7 +102,10 @@
         {% if movie %}
         <ul>
             {% for movie in movie %}
-            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li>
+            <!-- <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li> -->
+
+<a href="/movie/movie/{{ movie.url }}" class="btn btn-info btn-small"><i class="icon-white icon-heart"></i>{{ movie.name }} </a> </br>| <b>Movie Name:</b>| Genre: <b>{{ movie.genre }} |{{ movie.likes }} like(s)</br></a>
+            
             {% endfor %}
         </ul>
         {% else %}
