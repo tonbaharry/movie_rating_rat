@@ -5,12 +5,12 @@
 {% block body_block %}
 
     <!-------Scrolling movie Images---->
-                <!--<div class="hero-unit">-->
-                    <!-- <div class='container-fluid pull-left'> -->
+               
+                    <div class='container-fluid pull-left'>
                                         <!-- Carousel
                                         ================================================== -->
                                         <div id="myCarousel" class="carousel slide">
-                                            <div class="carousel-inner">
+                                            <div class="carousel-inner" >
 
                                                 <div class="item active">
                                                     <iframe width="860" height="415" src="//www.youtube.com/embed/mmpSCvlZ7hY" frameborder="0" allowfullscreen></iframe>
@@ -39,9 +39,10 @@
                                             <a class="right carousel-control" href="index.html#myCarousel" data-slide="next">&rsaquo;</a>
 
                                          </div> <!-- /.container-fluid -->
-                    <!-- </div> end container-fluid -->
+                    </div> 
+                    <!-- end container-fluid -->
 
-
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 
 
 <!--- Category list on the home page -->
@@ -61,8 +62,8 @@
 
 
 
-<div class="pull-left">
-    <div class="span6">
+<div class="row-fluid">
+    <div class="span4 pull-left">
 
         <h2>Top Five Reviews</h2>
         {% if movie %}
@@ -95,7 +96,7 @@
 
 
 
-    <div class="span6">
+    <div class="span4 pull-left">
         <h2>Top Five Movies</h2>
         {% if movie %}
         <ul>
@@ -108,7 +109,7 @@
         {% endif %}
 
     </div>
-    <div class="span6">
+    <div class="span4 pull-left">
         <h2>Worst Five Movies</h2>
         {% if movi %}
         <ul>

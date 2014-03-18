@@ -7,11 +7,16 @@
     <h1>{{ movie_name }}</h1>
 {% if movie %}
     <p>
-	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b>
+	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b></br>
 
 
-     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button>      
+     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button></br>
+     <!-- <button id ="likes" data-movid="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</button>   -->
      <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+
+     
+        <p> {{ movie.desc| linebreaks }}</p>
+ 
 	
      <div class="jumbotron">
     <div class="container">
