@@ -10,12 +10,14 @@
 	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b></br>
 
 
-     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button></br>
-     <!-- <button id ="likes" data-movid="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</button>   -->
-     <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+    
+     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-danger btn-large" type="button"><i class="icon-white icon-heart"></i> Like A movie</button>
+     
+     <a href="/movie/movie/{{ movie_name_url }}/comment/" class="btn btn-warning btn-large"><i class="icon-white icon-heart"></i> Submit a Review</a>
+
 
      
-        <p> {{ movie.desc| linebreaks }}</p>
+        
  
 	
      <div class="jumbotron">
@@ -64,7 +66,8 @@
             </div>
                 <p>{{ comment.description }}</p>
                 <p>{{ comment.ureviewer_name}}</p>
-<a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a>
+<a href="/movie/goto/?comment_id={{comment.id}}" class="btn btn-danger btn-large"><i class="icon-white icon-heart"></i> Like This Review</a>
+<!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
 {% if user.is_authenticated %}
 <!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
 {% endif %}
@@ -74,7 +77,7 @@
                  ({{ comment.views }} liked)</br>
             {% endif %}
 
- <a href="/movie/movie/{{ movie_name_url }}/comment/">Add New Review</a>
+ <a href="/movie/movie/{{ movie_name_url }}/comment/" class="btn btn-warning btn-large"><i class="icon-white icon-heart"></i> Submit a Review</a>
 
 
         {% endfor %}

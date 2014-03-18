@@ -97,8 +97,10 @@ def index(request):
 #-----------------------------------------------------------
     
     comment_list = Comment.objects.order_by('-views')[:5]
+    
     for comment in comment_list:
         comment.url = comment.movie.name.replace(' ', '_')
+    
     context_dictr = {'comments': comment_list}
     context_dict['comments'] = comment_list
 
@@ -106,10 +108,6 @@ def index(request):
 
 #-------------------------------------------------------
     genre_list = Genre.objects.all()
-
-    # for genre in genre_list:
-    #     movie.url = genre.name.replace(' ', '_')
-    # context_dicte = {'genres': comment_list} 
     context_dict['genres']=  genre_list
 
 
