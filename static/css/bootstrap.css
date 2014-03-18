@@ -615,6 +615,7 @@ a:focus {
 }
 
 .container {
+  background-color: #D4D4D4;
   margin-right: auto;
   margin-left: auto;
   *zoom: 1;

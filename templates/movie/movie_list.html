@@ -1,7 +1,8 @@
 	<ul class="nav nav-list">
 	   {% if mov_list %}
 		{% for mov in mov_list %}
-		  <li><a href="/movie/movie/{{ mov.url }}">{{ mov.name }}</a></li>
+		  
+		  <a href="/movie/movie/{{ mov.url }}" class="btn btn-success btn-small"><i class="icon-white icon-heart"></i>{{ mov.name }}</a>
 
             <a href="/movie/goto/?comment_id={{comment.id}}">{{pcomment.title}}</a>
 

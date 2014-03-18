@@ -5,6 +5,7 @@
     color: blue;
 }
 .container-fluid{
+    background-color: #D4D4D4;
    margin-top: 50px;
    margin-bottom: 10px;
     align-self: center;
@@ -32,6 +33,7 @@
     background: gainsboro;
 }
 .container{
+
      margin-top: 40px;
    margin-bottom: 10px;
 }
@@ -44,4 +46,7 @@
     width: 50%;
     background: green;
     margin-left: 5px;
+}
+body {
+    background: white url("images/background.gif") no-repeat right bottom;
 }
