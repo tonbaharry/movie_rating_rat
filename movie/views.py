@@ -97,11 +97,11 @@ def index(request):
 #-----------------------------------------------------------
     
     comment_list = Comment.objects.order_by('-views')[:5]
-    # for comment in comment_list:
-    #     comment.movie= encode_url(comment.movie)
-    # # context_dictr = {'comments': comment_list} 
-
+    for comment in comment_list:
+        comment.url = comment.movie.name.replace(' ', '_')
+    context_dictr = {'comments': comment_list}
     context_dict['comments'] = comment_list
+
 
 
 #-------------------------------------------------------
@@ -234,7 +234,7 @@ def add_movie(request):
 
     # A HTTP POST?
     if request.method == 'POST':
-        form = MovieForm(request.POST)
+        form = MovieForm(request.POST, request.FILES)
 
         # Have we been provided with a valid form?
         if form.is_valid():
@@ -255,6 +255,7 @@ def add_movie(request):
     # Render the form with error messages (if any).
     context_dict['form'] = form
     return render_to_response('movie/add_movie.html', context_dict, context)
+
 
 
 @login_required
@@ -284,6 +285,7 @@ def add_comments(request, movie_name_url):
 
             # Also, create a default value for the number of views.
             comment.views = 0
+
 
             # With this, we can then save our new model instance.
             comment.save()
@@ -406,6 +408,7 @@ def user_login(request):
 @login_required
 def restricted(request):
     context = RequestContext(request)
+    
     mov_list = get_movie_list()
     context_dict = {}
     context_dict['mov_list'] = mov_list

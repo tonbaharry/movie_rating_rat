@@ -16,7 +16,7 @@ class Movie(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0 )
     releaseYear = models.IntegerField(default=1900)
-    coverPhoto = models.ImageField(upload_to='movie_images', default='profile_images/rat.jpg',help_text='add movie image')
+    coverPhoto = models.ImageField(upload_to='profile_images', default='profile_images/rat_small.jpg',help_text='add movie image')
     desc = models.TextField(max_length=200,help_text="Please add a movie description")
 
 
@@ -27,14 +27,7 @@ class Movie(models.Model):
 
 
 
-class Comment(models.Model):
-    title = models.CharField(max_length=128,)
-    movie = models.ForeignKey(Movie)
-    views = models.IntegerField(default=0)
-    description = models.TextField()
 
-    def __unicode__(self):
-        return self.title
 
 
 class UserProfile(models.Model):
@@ -49,6 +42,15 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
+class Comment(models.Model):
+    title = models.CharField(max_length=128,)
+    movie = models.ForeignKey(Movie)
+    views = models.IntegerField(default=0)
+    description = models.TextField()
+    ureviewer_name=models.CharField(max_length=200,help_text='nick name')
+
+    def __unicode__(self):
+        return self.title
 
 class User(models.Model):
     name = models.EmailField(max_length=128, primary_key=True)

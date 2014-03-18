@@ -9,7 +9,7 @@
 
     <div class="container">
 
-        <form class="span9" id="movie_form" method="post" action="/movie/add_movie/">
+        <form class="span9" enctype="multipart/form-data" id="movie_form" method="post" action="/movie/add_movie/">
 
             {% csrf_token %}
             <!--Cross-Site Request Forgery (CSRF) token, which helps to protect and secure the HTTP POST action-->

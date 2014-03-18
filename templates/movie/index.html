@@ -76,7 +76,7 @@
         {% if movie %}
         <ul>
             {% for comment in comments %}
-            <li><a href="/movie/movie/{{comment.movie}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie}} | {{comment.views}} like(s)</li>
+            <li><a href="/movie/movie/{{comment.url}}">{{ comment.title }}</a> | <b>Movie Name:</b> {{ comment.movie.name}} | {{comment.views}} like(s)</li>
             {% endfor %}
         </ul>
         {% else %}

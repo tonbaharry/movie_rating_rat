@@ -10,15 +10,13 @@
 	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b>
 
 
-           
-
-	{% if user.is_authenticated %}
-		<button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button>
-	{% endif %}
+     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button>      
+     <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+	
      <div class="jumbotron">
     <div class="container">
     {% if user.is_authenticated %}
-    <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Review</a>
+    
     {% endif %}
 
 
@@ -33,7 +31,7 @@
 
         <h1>Movie Details</h1>
         <div class="hero-unit">
-        <b>Photo:</b> <img src="{{ movie.coverPhoto.url }}"  />
+        <b></b> <img src="{{ movie.coverPhoto.url }}"  />
         <p><b>Release Year:</b> {{ movie.releaseYear }}</p>
         <p><b>Genre:</b> {{ movie.genre }}</p>
 
@@ -60,9 +58,10 @@
             <h3>{{ comment.title }}</h3>
             </div>
                 <p>{{ comment.description }}</p>
-
-{% if user.is_authenticated %}
+                <p>{{ comment.ureviewer_name}}</p>
 <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a>
+{% if user.is_authenticated %}
+<!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
 {% endif %}
             {% if comment.views > 1 %}
                  ({{ comment.views }} liked)
@@ -70,10 +69,8 @@
                  ({{ comment.views }} liked)</br>
             {% endif %}
 
-
-{% if user.is_authenticated %}
  <a href="/movie/movie/{{ movie_name_url }}/comment/">Add New Review</a>
-{% endif %}
+
 
         {% endfor %}
     </ul>
