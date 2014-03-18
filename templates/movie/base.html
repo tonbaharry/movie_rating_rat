@@ -45,17 +45,14 @@
 
                 <ul class="nav">
                     {% if user.is_authenticated %}
-                    <li><a href="/movie/restricted/">Restricted</a></li>
+                   
                     <li><a href="/movie/add_movie/">Add Movie</a></li>
 
                     {% endif %}
 
-
-                    <!-- <li><a href="http://www.imdb.com/">IMDB</a></li> -->
                     <li><a href="/movie/about/">About</a></li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </div>
 </div>
@@ -86,41 +83,26 @@
 </form>
 </ul>
 
-        {% if mov_list %}
-<div id="movs">
-{% include 'movie/movie_list.html'  %}
-</div>
-{% endif %}
-<!---
-<div id="cats">
-{% if mov_list %}
-<ul class="nav nav-list"><li>Category List</li></ul>
-{% include 'movie/movie_list.html' with mov_list=mov_list %}
-{% endif %}
-</div>
---->
-
-
+            {% if mov_list %}
+            <div id="movs">
+                {% include 'movie/movie_list.html'  %}
             </div>
-            <!--/.well -->
+            {% endif %}
 
         </div>
-        <!--/span-->
-        <!--/span-->
     </div>
     <!--/row-->
-
 </div>
 <!--/.fluid-container-->
 
 <hr>
 
-<!---<footer>
+
 <div class="container">
 <p>&copy; Movie Rat: Movie Rating Website Glasgow University MSc IT/SD 2014</p>
 </div>
 </footer>-
----------------------------------->
+
 
 
 <hr/>
