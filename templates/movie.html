@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+</head>
+<body>
+{% extends &quot;movie/base.html&quot; %} {% block title %}{{ movie_name }}{% endblock %} {% block body_block %}
+<div class="hero-unit"><img>
+<h1>{{ movie_name }}</h1>
+{% if movie %}
+<p><b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b> {% if user.is_authenticated %}like {% endif %}
+</p>
+</div>
+<div>
+<ul class="nav nav-tabs">
+<li class="active"><a href="#Description">Description</a> </li><li><a href="#Reviews">Reviews</a> </li><li><a href="#SearchWeb">Search the Web</a> </li></ul>
+<div class="tab-content">
+<div class="tab-pane active" id="Description">
+<div class="hero-unit"><strong>
+<p><b>Release Year:</b> {{ movie.releaseYear }}</p>
+<p><b>Genre:</b> {{ movie.genre }}</p>
+</strong><br>
+<p>{{ movie.desc| linebreaks }}</p>
+</div>
+</div>
+<div class="tab-pane" id="Reviews">
+<div class="hero-unit">
+<div class="container">{% if user.is_authenticated %}
+<h3><a href="UrlBlockedError.aspx" target="_blank">Click to Add a Movie Review</a></h3>
+{% endif %} </div>
+</div>
+{% if comments %}
+<ul>
+{% for comment in comments %}
+<div class="jumbotron">
+<h3>{{ comment.title }}</h3>
+<h6>Reviewer: {{ comment.ureviewer_name }}</h6>
+{% if user.is_authenticated %} <a href="UrlBlockedError.aspx" target="_blank">Like this review
+</a>{% endif %} {% if comment.views &gt; 1 %} ({{ comment.views }} liked) {% elif comment.views == 1 %} ({{ comment.views }} liked)<br>
+{% endif %} </div>
+<div class="hero-unit">
+<p>{{ comment.description }}</p>
+</div>
+{% endfor %} </ul>
+{% else %} <strong>
+<div class="jumbotron">
+<div class="container">No Reviews Yet <br>
+{% if user.is_authenticated %} <a href="UrlBlockedError.aspx" target="_blank">Add a Movie Review</a> {% endif %}
+<br>
+</div>
+</div>
+</strong><br>
+{% endif %} {# </div>
+#} </div>
+<div class="tab-pane" id="SearchWeb">
+<div class="hero-unit">
+<div class="container-fluid">
+<p>Search for a page.</p>
+{% csrf_token %} Search </div>
+</div>
+<div class="hero-unit">
+<div class="container-fluid">{% if result_list %}
+<ol>
+{% for result in result_list %}
+<li>Add <strong><a href="UrlBlockedError.aspx" target="_blank">{{ result.title }}</a></strong><br>
+<p>{{ result.summary }}</p>
+{% endfor %} </li></ol>
+{% else %} <br>
+<p>No results found</p>
+{% endif %} </div>
+</div>
+</div>
+{% else %} The specified movie {{ movie_name }} does not exist! {% endif %} </div>
+<br>
+<div></div>
+{% endblock %}
+</body>
+</html>

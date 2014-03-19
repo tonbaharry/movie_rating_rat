@@ -79,22 +79,8 @@
 
     </div>
 
-<!-- <div class="span6">
 
-        <h1>Top Categories!</h1>
-
-        {% if genres %}
-            <ul>
-                {% for genre in genres %}
-                <li>{{ genre.name }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-
-    </div> -->
-
+<div>
 
 
     <div class="span4 pull-left">
@@ -113,22 +99,24 @@
         {% endif %}
 
     </div>
-    <div class="span4 pull-left">
+
+    
+
+
+<div class="span4 pull-left">
         <h2>Worst Five Movies</h2>
         {% if movi %}
         <ul>
             {% for movie in movi %}
-            <li><a href="/movie/movie/{{ movie.url }}">{{ movie.name }} </a> | Genre: <b>{{ movie.genre }}</b> <b>{{ movie.likes }}</b></li>
+            <a href="/movie/movie/{{ movie.url }}" class="btn btn-info btn-small"><i class="icon-white icon-heart"></i>{{ movie.name }} </a> </br>| <b>Movie Name:</b>| Genre: <b>{{ movie.genre }} |{{ movie.likes }} like(s)</br></a>
+            
             {% endfor %}
         </ul>
         {% else %}
         <strong>No movies at present.</strong>
         {% endif %}
-
+</div>
     </div>
-
 </div><!--/row-->
-
-
 {% endblock %}
 

@@ -3,140 +3,129 @@
 {% block title %}{{ movie_name }}{% endblock %}
 
 {% block body_block %}
-<div class="hero-unit">
-    <h1>{{ movie_name }}</h1>
-{% if movie %}
-    <p>
-	<b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b></br>
 
+    <div class="hero-unit">
+        <img src="{{ movie.coverPhoto.url }}"  />
+        <h1>{{ movie_name }}</h1>
 
-    
-     <button id ="likes" data-movid="{{movie.id}}" class="btn btn-danger btn-large" type="button"><i class="icon-white icon-heart"></i> Like A movie</button>
+        {% if movie %}
+            <p>
+            <b id="like_count">{{ movie.likes }}</b> <b>people like this movie</b></br>
+                <button id ="likes" data-movid="{{movie.id}}" class="btn btn-danger btn-large" type="button"><i class="icon-white icon-heart"></i> Like A movie</button>
      
      <a href="/movie/movie/{{ movie_name_url }}/comment/" class="btn btn-warning btn-large"><i class="icon-white icon-heart"></i> Submit a Review</a>
 
-
-     
-        
- 
-	
-     <div class="jumbotron">
-    <div class="container">
-    {% if user.is_authenticated %}
-    
-    {% endif %}
-
-
-
-
-</div>
-</div>
-    </p>
-</div>
- <!-- movie description- -->
-    <div class="jumbotron">
-
-        <h1>Movie Details</h1>
-        <div class="hero-unit">
-        <b></b> <img src="{{ movie.coverPhoto.url }}"  />
-        <p><b>Release Year:</b> {{ movie.releaseYear }}</p>
-        <p><b>Genre:</b> {{ movie.genre }}</p>
-
-    </div>
-    <div class="jumbotron">
-        <h1>Movie Description:</h1>
-<div class="hero-unit">
-        <p> {{ movie.desc| linebreaks }}</p>
- </div>
-    </div>
-
-</div>
-   <!--  -->
-<div class="jumbotron">
-
-<h1>Reviews</h1>
-
-  <div class="hero-unit">
-
-    {% if comments %}
-    <ul>
-        {% for comment in comments %}
-<div class="jumbotron">
-            <h3>{{ comment.title }}</h3>
-            </div>
-                <p>{{ comment.description }}</p>
-                <p>{{ comment.ureviewer_name}}</p>
-<a href="/movie/goto/?comment_id={{comment.id}}" class="btn btn-danger btn-large"><i class="icon-white icon-heart"></i> Like This Review</a>
-<!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
-{% if user.is_authenticated %}
-<!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
-{% endif %}
-            {% if comment.views > 1 %}
-                 ({{ comment.views }} liked)
-            {% elif comment.views == 1 %}
-                 ({{ comment.views }} liked)</br>
+            {% if user.is_authenticated %}
+                <!-- <button id ="likes" data-movid="{{movie.id}}" class="btn btn-mini btn-primary" type="button">like</button> -->
             {% endif %}
+            </p>
+    </div>
+    <!----------------------------------------------------->
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
+            <li><a href="#Reviews" data-toggle="tab">Reviews</a></li>
+            <li><a href="#SearchWeb" data-toggle="tab">Search the Web</a></li>
+        </ul>
 
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="Description">
+                <div class="hero-unit">
+                    <strong>
+                        <p><b>Release Year:</b> {{ movie.releaseYear }}</p>
+                        <p><b>Genre:</b> {{ movie.genre }}</p>
+                    </strong>
+                    <br/>
+                    <p> {{ movie.desc| linebreaks }}</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="Reviews">
+                
+
+                {% if comments %}
+                    <ul>
+                    {% for comment in comments %}
+                        <div class="jumbotron">
+                            <h3>{{ comment.title }}</h3>
+                            <h6>Reviewer: {{ comment.ureviewer_name }}</h6>
+                            <a href="/movie/goto/?comment_id={{comment.id}}" class="btn btn-danger btn-large"><i class="icon-white icon-heart"></i> Like This Review</a>
  <a href="/movie/movie/{{ movie_name_url }}/comment/" class="btn btn-warning btn-large"><i class="icon-white icon-heart"></i> Submit a Review</a>
+                            {% if user.is_authenticated %}
 
+                                <!-- <a href="/movie/goto/?comment_id={{comment.id}}"> Like this review </a> -->
+                            {% endif %}
+                            {% if comment.views > 1 %}
+                                ({{ comment.views }} liked)
+                            {% elif comment.views == 1 %}
+                                ({{ comment.views }} liked)</br>
+                            {% endif %}
+                        </div>
 
-        {% endfor %}
-    </ul>
-    {% else %}
-    <strong> <div class="jumbotron">
-    <div class="container">
-    {% if user.is_authenticated %}
-    <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Movie Review</a>
-    {% endif %}
-</div></div></strong><br/>
-    {% endif %}
-</div>
-   </div>
+                        <div class="hero-unit">
+                            <p>{{ comment.description }}</p>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>
+                    <div class="jumbotron">
+                        <div class="container">
+                            No Reviews Yet
+                            </br>
+                            {% if user.is_authenticated %}
+                                <a href="/movie/movie/{{ movie_name_url }}/comment/">Add a Movie Review</a>
+                            {% endif %}
+                            </br>
+                        </div>
+                    </div>
+                    </strong>
+                    </br>
+                {% endif %}
+{#                </div>#}
+            </div>
+            <div class="tab-pane" id="SearchWeb">
+                <div class="hero-unit">
+                    <div class="container-fluid">
+	                    <p>Search for a page.</p>
+		                <form class="span8 form-search" id="search_form" method="post" action="/movie/movie/{{ movie_name_url }}/">
 
+			                {% csrf_token %}
+			                <input type="text" class="input-long search-query"  name="query" value="{{ movie_name }}" id="query" />
+			                <button type="submit" class="btn btn-success" name="submit" value="Search">Search</button>
+		                </form>
+	                </div>
+                </div>
+
+                <div class="hero-unit">
+	                <div class="container-fluid">
+            		    {% if result_list %}
+            			<!-- Display search results in an ordered list -->
+            			    <ol>
+            				    {% for result in result_list %}
+            				        <li>
+                      		            <button data-movid="{{movie.id}}" data-title="{{ result.title }}" data-url="{{ result.link }}"  type="button">Add</button>
+            					        <strong><a href="{{ result.link }}">{{ result.title }}</a></strong><br />
+            					        <p>{{ result.summary }}</p>
+            				        </li>
+            				    {% endfor %}
+            			    </ol>
+                        {% else %}
+            			    <br/>
+            			    <p>No results found</p>
+            		    {% endif %}
+            	    </div>
+            </div>
+        </div>
+        {% else %}
+	        The specified movie {{ movie_name }} does not exist!
+        {% endif %}
+    </div>
 <!---------------------------------------->
     <br/>
 
 
-
-
-
-
-<div class="hero-unit">
-	<div class="container-fluid">
-	    <p>Search for movie suggestions.</p>
-		<form class="span8 form-search" id="search_form" method="post" action="/movie/movie/{{ movie_name_url }}/">
-			{% csrf_token %}
-			<input type="text" class="input-long search-query"  name="query" value="{{ movie_name }}" id="query" />
-			<button type="submit" class="btn btn-success" name="submit" value="Search">Search</button>
-		</form>
-	</div>
-
-	<div class="container-fluid">
-		{% if result_list %}
-			<!-- Display search results in an ordered list -->
-			<ol>
-				{% for result in result_list %}
-				
-                    {% if user.is_authenticated %}
-		  
-	        {% endif %}
-					<strong><a href="{{ result.link }}">{{ result.title }}</a></strong><br />
-					<p>{{ result.summary }}</p>
-				
-				{% endfor %}
-			</ol>
-		{% else %}
-			<br/>
-			<p>No results found</p>
-		{% endif %}
-	</div>
-{% else %}
-	The specified movie {{ movie_name }} does not exist!
-
-</div>
-{% endif %}
-
-</div>
-
-
+    </div>
 {% endblock %}
+

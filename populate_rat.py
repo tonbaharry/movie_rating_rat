@@ -1,241 +1,106 @@
 import os
 
 def populate():
+cmd_mov1 = add_mov('zuma','Zuma is a movie remake of one of the oldest and most popular comic books in the Philippines. It stars Zuma, a creature donning a snake over his shoulder which perfectly accentuates his monster-like features.','Comedy',releaseYear=1985,views=128, likes=64 )
 
-    comedy_genre = add_gen("Comedy")
+    	comment(mov=cmd_mov1,title='Very credible job',
+         description="Kimberly Pierce's take on Carrie puts more emphasis on the bullying aspect of the story",views=4)
 
+    	comment(mov=cmd_mov1,title='Soapy Bravery in Ancient Greece',
+    	description="For a remake, it's pretty impressive, and you can't go wrong with a good old Prom scene",views=3)
 
-    horror_mov = add_mov(gen=comedy_genre,name='About Last Night',
-        desc='Follow two couples as they journey from the bar to the bedroom and are eventually put to the test in the real world.',
-        releaseYear=2014,
-        views=128, 
-        likes=1 )
+    	comment(mov=cmd_mov1,title='a super excellent show',
+    	description="With great performances from Chloe Grace Moretz and Julianne Moore, Carrie is a great-modern interpretation of Stephen Kings classic novel",views=20)
+	
+	comment(mov=cmd_mov1,title='Go tell them',
+    	description="It is only a vague memory of seeing this film four decades ago, but it impressed me for several reasons",views=12)
 
-    comment(mov=horror_mov,title='About Last Night',
-         description="I cannot get over this remake of a great classic! "+
-         "he original was so well acted. Remakes are rarely as good but this "+
-         "just plain awful! Aside from Kevin Hart not being funny (ever in anything)...even"+
-         " you are someone who thinks he is funny, the acting is still atrocious! Everyone except "+
-         "y needs to take acting lessons. They overact (and poorly) to everything they say and do. It"+
-         " to the absurd level. If it were that kind of movie, I'd understand - but they took a great movie"+
-         "d made a mockery of it. There are so many wonderful and talented black actors out there - why they chose"+
-         "s cast is baffling (sans Ealy who is great in everything). I'm just so frustrated by the idea that the younger"+
-         "neration will know this movie by this version - tragic for people who appreciate good classics.", 
-         ureviewer_name='stephsaddress',   views=4)
+	comment(mov=cmd_mov1,title='I like this better than I thought',
+    	description="If you enjoy a lot of blood, then watch this",views=26)
 
-    comment(mov=horror_mov,title='This movie will make you laugh out loud.',
-    description="kjk",
-    ureviewer_name='superwomanproductions',views=3)
+act_mov1 = add_mov('Casino Royale','Armed with a license to kill, Secret Agent James Bond sets out on his first mission as 007 and must defeat a weapons dealer in a high stakes game of poker at Casino Royale, but things are not what they seem.','Action',releaseYear=2006,views=582, likes=124 )
 
-    comment(mov=horror_mov,title='Expect it to be average and you  like it',
-    description="With great performances from Chloe Grace Moretz and Julianne Moore, Carrie is a"
-                " great-modern interpretation of Stephen Kings classic novel",
-    ureviewer_name='smokee',
-    views=20)
+    	comment(mov=act_mov1,title='Excellent prequel to the series',
+         description=""Casino Royale" is a great re-creation of the series. Cool action, great thrills and a more humane ",views=8)
 
-    action_genre = add_gen(
-        'Action')
+    	comment(mov=act_mov1,title='Pretentious euro-pudding pseudo-spy movie',
+    	description="Other than good performances from Juliette Binoche, Sara Forestier and the likable newcomer Tom Riley, this movie doesn't have much to recommend it.",views=13)
 
-    action_mov = add_mov(gen=action_genre,name='Noah',
-                         desc='A man suffering visions of an apocalyptic '
-                              'deluge takes measures to protect his family a '
-                              'coming flood. Inspired by the Biblical story. ',
-                         releaseYear=2014,
-                         views=228,
-                         likes=32)
+    	comment(mov=act_mov1,title='At last, a good british film!',
+    	description="Though it has some flaws, "High tension" is a thoroughly enjoyable and nasty piece of works, with fine acting (kudos to Philippe Nahon as the slimy killer)",views=16)
+	
+	comment(mov=act_mov1,title='Unabashed fun !',
+    	description="The Great bond of darkness is a basic retelling of the "Great Mazinger" series's story : our heroes battle the evil forces of the subterranean Mikene empire",views=12)
 
-    comment(mov=action_mov,title='Good for week end',
-        description="The remake of Carrie, suffers severely from a lead that fails"
-                    " to evoke the same awkward and creepiness",
-        ureviewer_name='smokee',
-        views=90)
-
-    comment(mov=action_mov,title='wow',
-        description="YOU WILL KNOW HER NAME",
-        ureviewer_name='smokee',
-        views=4)
-
-    comment(mov=action_mov,title='wow',
-        description="Lacking in thrills and a sluggish build-up, "
-                    "there was so much the filmmakers could have "
-                    "done with this film.",
-        ureviewer_name='smokee',
-        views=10)
-
-    commedy_movie = add_mov(gen=comedy_genre,
-                            name='Divergent',
-                            desc='Set in a futuristic dystopia where society is divided into five'
-                                 ' factions that each represent a different virtue, teenagers have to '
-                                 'decide if they want to stay in their faction or switch to another - for'
-                                 ' the rest of their lives. Tris Prior makes a choice that surprises everyone. '
-                                 'Then Tris and her fellow faction-members have to live through a highly competitive'
-                                 ' initiation process to live out the choice they have made. They must undergo extreme'
-                                 ' physical and intense psychological tests, that transform them all. But Tris has a secret'
-                                 ' that she is Divergent, which means she doesn\'t fit into any one group. If anyone knew, it'
-                                 ' would mean a certain death. As she discovers a growing conflict that threatens to unravel '
-                                 'her seemingly perfect society, this secret might help her save the people she loves... '
-                                 'or it might destroy her. ',
-                            releaseYear=2014,
-                            views=807,
-                            likes=2066)
-
-    comment(mov=commedy_movie,
-            title='Very Futuristic',
-            description="Sherman Hemsley appeared as two different "
-                        "characters throughout the show, once as Judge C"
-                        "arl Robertson and again later as a cameo playing George "
-                        "Jefferson",
-            ureviewer_name='smokee',
-            views=14)
-    comment(mov=commedy_movie,
-            title='Something that we already seen',
-            description="The living room changed, although they"
-                        " lived in the same house. After they changed it, the stairs "
-                        "were in the living room, they originally weren't there",
-            ureviewer_name='smokee',
-            views=12)
-    comment(mov=commedy_movie,
-            title='Not bad',
-            description="For a couple of episodes, the show was entitled 'The Fresh Prince "
-                        "of Philidelphia???' for when Will decided to stay in Philly.",
-            ureviewer_name='smokee',
-            views=10)
-
-    mystery_genre = add_gen(
-        'Mystery')
-
-    nonstop_movie = add_mov(gen=mystery_genre,
-                            name='NonStop',
-                            desc='An air marshal springs into action during a transatlantic flight '
-                                 'after receiving a series of text messages that put his fellow passengers '
-                                 'at risk unless the airline transfers $150 million into an off-shore account.',
-                            releaseYear=2014,
-                            views=807,
-                            likes=2066)
-
-    comment(mov=nonstop_movie,
-            title='Great "Edge-Of-Your-Seat" Film',
-            description="I saw an advanced screening of this movie yesterday, and I was absolutely blown away. "
-                        "I had hoped it would be a fun thrill-ride, but I did not expect "
-                        "it to be as exciting and involved as it was.My favorite part of this "
-                        "movie, was the fact that it takes a plot that is implausible, and makes "
-                        "it as plausible as possible. You can definitely tell that the writers did their "
-                        "research on air marshals, airplane mechanics, etc. There was not one moment in this "
-                        "film that I was bored, and it was filled to the brim with twists, and turns."
-                        "There definitely is a lot that went into this movie, and even though it'll have "
-                        "you thinking more deeply about the security of airlines, most of all it's just "
-                        "a really, really fun ride.",
-            ureviewer_name='Taizpian ',
-            views=14)
-    comment(mov=nonstop_movie,
-            title='Silly as Hell, but quite entertaining',
-            description="TAbsolutely ludicrous Liam Neeson thriller (which is a genre now), "
-                        "but, frankly, it's just a lot of fun. I found myself smiling and giggling at the silliness "
-                        "of it all, but damned if I wasn't enjoying myself the whole time. Neeson plays an air marshal"
-                        " who receives a text shortly after his flight commences that, if a load of money isn't "
-                        "deposited into an untraceable bank account, a passenger will be killed every 20 minutes. "
-                        "The film is clever enough to make it impossible to guess - or, alternatively, you pretty "
-                        "much suspect everyone and hope like Hell they don't pull out the old Liam-Neeson-has-"
-                        "multiple-personalities-and-is-doing-it-himself twist. The film is hilariously convoluted "
-                        "with plenty of plot holes. When the villain is revealed, they say 'You'd never believe "
-                        "how easy it all was!' "
-                        "They are correct. "
-                        " I would never believe it. I still quite enjoyed watching it.",
-            ureviewer_name='zetes',
-            views=12)
-    comment(mov=nonstop_movie,
-            title='awesome action movie',
-            description="'Non-Stop' is an action mystery thriller starring Liam Neeson"
-                        " and Julianne Moore and is directed by Jaume Collet-Serra (Unknown, Orphan)."
-                        " The story takes place 30,000 feet above the Atlantic Ocean inside of a plane traveling "
-                        "from New York to London. Bill (Liam Neeson) is a Federal Air Marshall with a troubled past."
-                        " He is assigned to accompany the international flight when things take a turn for the "
-                        "worst and there is an apparent hijacking of the plane. The catch: Bill is being framed."
-                        " Don't worry though, I haven't spoiled anything you couldn't find in the trailer already."
-                        " But, while it might sound like you have heard this plot "
-                                  "100 times before just in different settings, you may be in fact incorrect.",
-            ureviewer_name='renton Hoshiko',
-            views=10)
+	comment(mov=act_mov1,title='Great follow-up to Mazinger',
+    	description="I am just speechless",views=65)
 
 
-    thriller_genre = add_gen(
-        'Thriller')
+act_mov2 = add_mov('American Hustle', 'A con man, Irving Rosenfeld, along with his seductive partner Sydney Prosser, is forced to work for a wild FBI agent, Richie DiMaso, who pushes them into a world of Jersey powerbrokers and mafia. ','Action',releaseYear=2012,views=228, likes=32)
+	
+	comment(mov=act_mov2,title='Not bad for 40 years ago',
+    	description="I was a teenager when I first saw this film. I was raised on the ancient spectacle films of the 50's and 60's and feel this one holds up quite well. No, it's not perfection with respect to history",views=35)
+	
+	comment(mov=act_mov2,title='My favorite all time movie',
+    	description="Seen the movie many times when younger, wanted to get the show again even now",views=21)
 
-    tournament_movie = add_mov(gen=thriller_genre,
-                            name='Tournament',
-                            desc='Every seven years in an unsuspecting town, The Tournament takes place. '
-                                 'A battle royale between 30 of the world\'s deadliest assassins. '
-                                 'The last man standing receiving the $10,000,000 cash prize '
-                                 'and the title of Worlds No 1, which itself carries the legendary '
-                                 'million dollar a bullet price tag. ',
-                            releaseYear=2009,
-                            views=807,
-                            likes=2066)
+	comment(mov=act_mov2,title='A Tale of Courage, Heroism and Idealism',
+    	description="A Tale of Courage, Heroism and Idealism.Super excellent",views=47)
 
-    comment(mov=tournament_movie,
-            title='Believe me, Middlesborough never',
-            description="I saw an advanced screening of this movie yesterday, and I was absolutely blown away. "
-                        "I had hoped it would be a fun thrill-ride, but I did not expect "
-                        "it to be as exciting and involved as it was.My favorite part of this "
-                        "movie, was the fact that it takes a plot that is implausible, and makes "
-                        "it as plausible as possible. You can definitely tell that the writers did their "
-                        "research on air marshals, airplane mechanics, etc. There was not one moment in this "
-                        "film that I was bored, and it was filled to the brim with twists, and turns."
-                        "There definitely is a lot that went into this movie, and even though it'll have "
-                        "you thinking more deeply about the security of airlines, most of all it's just "
-                        "a really, really fun ride.",
-            ureviewer_name='Taizpian ',
-            views=14)
-    comment(mov=nonstop_movie,
-            title='Silly as Hell, but quite entertaining',
-            description="TAbsolutely ludicrous Liam Neeson thriller (which is a genre now), "
-                        "but, frankly, it's just a lot of fun. I found myself smiling and giggling at the silliness "
-                        "of it all, but damned if I wasn't enjoying myself the whole time. Neeson plays an air marshal"
-                        " who receives a text shortly after his flight commences that, if a load of money isn't "
-                        "deposited into an untraceable bank account, a passenger will be killed every 20 minutes. "
-                        "The film is clever enough to make it impossible to guess - or, alternatively, you pretty "
-                        "much suspect everyone and hope like Hell they don't pull out the old Liam-Neeson-has-"
-                        "multiple-personalities-and-is-doing-it-himself twist. The film is hilariously convoluted "
-                        "with plenty of plot holes. When the villain is revealed, they say 'You'd never believe "
-                        "how easy it all was!' "
-                        "They are correct."
-                        " I would never believe it. I still quite enjoyed watching it.",
-            ureviewer_name='zetes',
-            views=12)
-    comment(mov=nonstop_movie,
-            title='awesome action movie',
-            description="'Non-Stop' is an action mystery thriller starring Liam Neeson"
-                        " and Julianne Moore and is directed by Jaume Collet-Serra (Unknown, Orphan)."
-                        " The story takes place 30,000 feet above the Atlantic Ocean inside of a plane traveling "
-                        "from New York to London. Bill (Liam Neeson) is a Federal Air Marshall with a troubled past."
-                        " He is assigned to accompany the international flight when things take a turn for the "
-                        "worst and there is an apparent hijacking of the plane. The catch: Bill is being framed."
-                        " Don't worry though, I haven't spoiled anything you couldn't find in the trailer already."
-                        " But, while it might sound like you have heard this plot "
-                                  "100 times before just in different settings, you may be in fact incorrect.",
-            ureviewer_name='renton Hoshiko',
-            views=10)
+	comment(mov=act_mov2,title='A Tale of Courage, Heroism and Idealism',
+    	description="A Tale of Courage, Heroism and Idealism.Super excellent",views=47)
+
+act_mov3 = add_mov('Django Unchained', 'With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.','Action',releaseYear=2013,views=46, likes=102)
+	
+	comment(mov=act_mov3,title='an interesting film about an important world event',
+    	description="This film is about the battle of Thermopylae, between the Athenian Democracy and the Persian totalitarian empire.",views=164)
+
+	comment(mov=act_mov3,title='Brilliant!!!',
+    	description="Often brilliant essentially-true dramatized history of a great Grecian battle",views=82)
+
+	comment(mov=act_mov3,title='Why isn't this out on VHS let alone DVD?',
+    	description="True story of heroic events. AND...it ain't hokey! Must see for any history buff.",views=35)
+
+	comment(mov=act_mov3,title='unforgettable',
+    	description="I saw this one many years ago(when it came out) on the big screen. Awesome story. ",views=27)
+
+	comment(mov=act_mov3,title='About par for the course',
+    	description="Dimpled German king leads his men to death and glory, while Persian tyrant fumes and stamps his feet.",views=27)
+
+act_mov4 = add_mov('Captain Phillips', 'The true story of Captain Richard Phillips and the 2009 hijacking by Somali pirates of the US-flagged MV Maersk Alabama, the first American cargo ship to be hijacked in two hundred years.','Mystery',releaseYear=2013,views=12, likes=223)	
+
+        
+	comment(mov=act_mov4,title='Exhausting, Thrilling and Powerful',
+        description="Those little blue people are back in this unfortunate sequel to a terrible children's film.",views=90)
+
+    	comment(mov=act_mov4,title='Orgasmic heights for rock fans, everyone else needn't apply',
+        description="YOU WILL KNOW HER NAME",views=4)
+
+    	comment(mov=action_mov,title='Trip's plot doesn't offer more than visual flourishes',
+        description="Lacking in thrills and a sluggish build-up, there was so much the filmmakers could have done with this film.",views=10)
+
+
+commedy_movie = add_mov('fresh prince of belair', 'The Banks family, a respectable Californian family, take in a relative - Will Smith, a street-smart teenager from Philadelphia. The idea is to make him respectable, responsible and mature, but Will has got other plans','comedy',releaseYear=1997,views=807, likes=2066)
+
+    comment(mov=commedy_movie,title='When it's funny, it's hilarious.', description="Sherman Hemsley appeared as two different characters throughout the show, once as Judge Carl Robertson and again later as a cameo playing George Jefferson",views=14)
+    comment(mov=commedy_movie, title='When it's lame, it's painful.',description="The living room changed, although they lived in the same house. After they changed it, the stairs were in the living room, they originally weren't there",views=12)
+    comment(mov=commedy_movie, title='Entertaining family film that is truly enjoyable',description="For a couple of episodes, the show was entitled 'The Fresh Prince of Philidelphia???' for when Will decided to stay in Philly.",views=10)
+    
    
 
 
-    
     #Print out what we have added to the user.
-    for a in Genre.objects.all():
-        for c in Movie.objects.all():
-            for p in Comment.objects.filter(movie=c):
-                 print "- {0} - {1}".format(str(c), str(p), str(a))
+    for c in Movie.objects.all():
+         for p in Comment.objects.filter(movie=c):
+             print "- {0} - {1}".format(str(c), str(p))
 
-def add_gen(name):
-    a = Genre.objects.get_or_create(name=name)[0]
-    return a
-
-def comment(mov,title,description,ureviewer_name,views=0):
-     p = Comment.objects.get_or_create(movie=mov, title=title,description=description,ureviewer_name=ureviewer_name,views=views)[0]
+def comment(mov,title,description,views=0):
+     p = Comment.objects.get_or_create(movie=mov, title=title,description=description,views=views)[0]
      return p
 
 
-def add_mov(gen,name,desc,releaseYear=0,views=0,likes=0,):
-    c = Movie.objects.get_or_create(genre=gen,name=name,desc=desc,releaseYear=releaseYear,views=views,likes=likes)[0]
+def add_mov(name,desc,genre,releaseYear=0,views=0,likes=0,):
+    c = Movie.objects.get_or_create(name=name,desc=desc,genre=genre,releaseYear=releaseYear,views=views,likes=likes)[0]
     return c
 
 
@@ -244,6 +109,18 @@ def add_mov(gen,name,desc,releaseYear=0,views=0,likes=0,):
 if __name__ == '__main__':
     print "Starting Movie Rat population script..."
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_rating_project.settings')
-    from movie.models import Movie, Comment,Genre
+    from movie.models import Movie, Comment
     populate()
 
+
+
+def add_mov(name,desc,genre,releaseYear=0,views=0,likes=0,):
+    c = Movie.objects.get_or_create(name=name,desc=desc,genre=genre,releaseYear=releaseYear,views=views,likes=likes)[0]
+    return c
+
+# Start execution here!
+if __name__ == '__main__':
+    print "Starting Movie Rat population script..."
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_rating_project.settings')
+    from movie.models import Movie, Comment
+    populate()

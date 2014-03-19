@@ -478,6 +478,7 @@ def like_movie(request):
         movie.save()
 
     return HttpResponse(likes)
+
 def track_url(request):
     context = RequestContext(request)
     comment_id = None
