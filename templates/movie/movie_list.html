@@ -2,9 +2,9 @@
 	   {% if mov_list %}
 		{% for mov in mov_list %}
 		  
-		  <a href="/movie/movie/{{ mov.url }}" class="btn btn-success btn-small"><i class="icon-white icon-heart"></i>{{ mov.name }}</a>
+		  <a href="/movie/movie/{{ mov.url }}" class="btn btn-success btn-small"><i class="icon-white icon-heart"></i>{{ mov.name }}</a></br>
 
-            <a href="/movie/goto/?comment_id={{comment.id}}">{{pcomment.title}}</a>
+            <a href="/movie/goto/?comment_id={{comment.id}}">{{comment.title}}</a>
 
 
 		{% endfor %}
