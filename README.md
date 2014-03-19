@@ -6,10 +6,7 @@ This is a project by ITech Masters students of the University of Glasgow.
 Movie_Rating_Rat provides a platform for movie enthusiasts to comment and rate movies. 
 Users of the site have the opportunity to view trailers of movies as well as suggest movies that they want to rate.
 Feel free to visit the site and read some of the hilarious yet painful truths about movies.
-The application has a vidoe carousel on the home page for viewing recently aded trailers.
-
-The application was built using Python in the Django framework.
-The application uses bootstrap, Bing API and it has a SQLite backend.
+The application has a vidoe carousel on the home page for viewing recently aded trailers.The application was built using Python in the Django framework.The application uses bootstrap, Bing search API to search for movies and it has a SQLite backend.
 
 
 Installation:
@@ -46,6 +43,7 @@ Administrator: The 'admin' or 'super user' has the right to delete movies,review
 Authors
 
     Itech Group TeamNice 2014
+    
     Fredrick Darkwa 2072812D
     Niceson Karungi 2077623K
     Harry Tubotonba 2060666H
@@ -54,7 +52,8 @@ Authors
 
 Contributing
 
- COntact us if you have any sugggestions on how we can improve this project.
+Feel free to contact via teamnice2014@gmail.com if you have any sugggestions on how we can improve this project. 
 
 License
+
 Movie Rat: Movie Rating Website Glasgow University MSc IT/SD 2014
