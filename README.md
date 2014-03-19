@@ -52,7 +52,7 @@ Authors
 
 Contributing
 
-Feel free to contact via teamnice2014@gmail.com if you have any sugggestions on how we can improve this project. 
+Feel free to contact us via teamnice2014@gmail.com if you have any sugggestions on how we can improve this project. 
 
 License
 
