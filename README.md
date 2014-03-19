@@ -19,6 +19,7 @@ Execute the command 'python manage.py runserver' to start the server.
 
 
 Usage:
+===========
 
 After the above instalation process, copy the link 'http://127.0.0.1:8000/movie' and paste in the address bar of
 your favourite browser and press return to view the gomepage.
@@ -29,6 +30,7 @@ Alternatively, you can create your own profile and test the functionalities prov
 
 
 Test Profiles
+==================
 
 The following user profiles were used in testing the functionalities:
 
@@ -39,6 +41,9 @@ This user is allowed to submit a movie for review on the page.
 
 Administrator: The 'admin' or 'super user' has the right to delete movies,reviews  and users who are abusing the site.
 
+Pip list:
+========
+Some of the items in the pip list could not be fully utilised because of time constraints. For example, the Imdb (IMDbPY (4.9)) installed was not used.
 
 Authors
 
